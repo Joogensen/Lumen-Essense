@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var walk_speed = 150.0
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
@@ -24,8 +23,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
+	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * walk_speed, walk_speed * acceleration)
+		$Sprite2D.flip_h = (direction > 0)  
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
 
