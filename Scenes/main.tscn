@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=4 format=3 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="PackedScene" uid="uid://bcvwccb8d3v58" path="res://Scenes/player.tscn" id="1_ahjb2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8830q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
+size = Vector2(216.5, 395)
 
 [node name="Main" type="Node2D"]
 
@@ -14,3 +17,15 @@ position = Vector2(551, 326)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(554, 474)
 shape = SubResource("WorldBoundaryShape2D_8830q")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(834.75, 337.5)
+shape = SubResource("RectangleShape2D_2l3o2")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = 724.0
+offset_top = 139.0
+offset_right = 942.0
+offset_bottom = 537.0
