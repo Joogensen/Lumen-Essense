@@ -5,7 +5,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8830q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
-size = Vector2(216.5, 105)
+size = Vector2(94, 85)
 
 [node name="Main" type="Node2D"]
 
@@ -35,20 +35,42 @@ color = Color(0.235294, 0.235294, 0.235294, 1)
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(763, 420.5)
+position = Vector2(700, 430.5)
 shape = SubResource("RectangleShape2D_2l3o2")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
 offset_left = 652.0
-offset_top = 368.0
-offset_right = 870.0
+offset_top = 387.0
+offset_right = 747.0
 offset_bottom = 473.0
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="StaticBody2D2/ColorRect"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 2.0
+offset_top = 20.0
+offset_right = 69.0
+offset_bottom = 104.0
+text = "Try wall jumping"
+autowrap_mode = 1
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(844, 360)
+shape = SubResource("RectangleShape2D_2l3o2")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+offset_left = 796.0
+offset_top = 318.0
+offset_right = 891.0
+offset_bottom = 404.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StaticBody2D3/ColorRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
 offset_right = 69.0
 offset_bottom = 104.0
 text = "Try wall jumping"
