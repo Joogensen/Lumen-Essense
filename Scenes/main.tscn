@@ -5,12 +5,19 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8830q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
-size = Vector2(216.5, 395)
+size = Vector2(216.5, 173)
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ahjb2")]
-position = Vector2(551, 326)
+position = Vector2(554, 426)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -21,11 +28,11 @@ shape = SubResource("WorldBoundaryShape2D_8830q")
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(834.75, 337.5)
+position = Vector2(763, 454.5)
 shape = SubResource("RectangleShape2D_2l3o2")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
-offset_left = 724.0
-offset_top = 139.0
-offset_right = 942.0
-offset_bottom = 537.0
+offset_left = 652.0
+offset_top = 368.0
+offset_right = 870.0
+offset_bottom = 540.0
