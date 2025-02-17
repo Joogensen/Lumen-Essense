@@ -1,13 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=9 format=3 uid="uid://duu74ywubn1dj"]
 
+[ext_resource type="Texture2D" uid="uid://dtd8layry8gqs" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bcvwccb8d3v58" path="res://Scenes/player.tscn" id="1_ahjb2"]
+[ext_resource type="Texture2D" uid="uid://bg5ify4st12p8" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8830q"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lywd6"]
+size = Vector2(293, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
-size = Vector2(94, 85)
+size = Vector2(229, 80.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qum"]
+size = Vector2(39, 139)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_odluj"]
+normal = Vector2(0.00591706, -0.999982)
+distance = -195.68
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf5as"]
+size = Vector2(334, 41)
 
 [node name="Main" type="Node2D"]
+
+[node name="Generate-a-dark-factory-background-that-has-some-e" type="Sprite2D" parent="."]
+position = Vector2(575, 319)
+scale = Vector2(0.552734, 0.626953)
+texture = ExtResource("1_5uln4")
 
 [node name="Player" parent="." instance=ExtResource("1_ahjb2")]
 position = Vector2(554, 426)
@@ -19,59 +37,50 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="PointLight2D2" type="PointLight2D" parent="Player"]
+light_mask = 2
+visibility_layer = 2
+texture = ExtResource("2_me62g")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+light_mask = 2
+visibility_layer = 2
+color = Color(0, 0, 0, 1)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(554, 474)
-shape = SubResource("WorldBoundaryShape2D_8830q")
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = 3.0
-offset_top = 473.0
-offset_right = 1155.0
-offset_bottom = 513.0
-color = Color(0.235294, 0.235294, 0.235294, 1)
+position = Vector2(650.5, 548)
+shape = SubResource("RectangleShape2D_lywd6")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(700, 430.5)
+position = Vector2(910, 549)
 shape = SubResource("RectangleShape2D_2l3o2")
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
-offset_left = 652.0
-offset_top = 387.0
-offset_right = 747.0
-offset_bottom = 473.0
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="StaticBody2D2/ColorRect"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 20.0
-offset_right = 69.0
-offset_bottom = 104.0
-text = "Try wall jumping"
-autowrap_mode = 1
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(844, 360)
+position = Vector2(121.5, 459.625)
 shape = SubResource("RectangleShape2D_2l3o2")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
-offset_left = 796.0
-offset_top = 318.0
-offset_right = 891.0
-offset_bottom = 404.0
-color = Color(0, 0, 0, 1)
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="StaticBody2D3/ColorRect"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 20.0
-offset_right = 69.0
-offset_bottom = 104.0
-text = "Try wall jumping"
-autowrap_mode = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(255.5, 538.5)
+shape = SubResource("RectangleShape2D_n0qum")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(448, 549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(-67, -130)
+shape = SubResource("WorldBoundaryShape2D_odluj")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(1185, 490.5)
+shape = SubResource("RectangleShape2D_xf5as")
