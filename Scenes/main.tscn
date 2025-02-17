@@ -43,7 +43,6 @@ visibility_layer = 2
 texture = ExtResource("2_me62g")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 2
 visibility_layer = 2
 color = Color(0, 0, 0, 1)
