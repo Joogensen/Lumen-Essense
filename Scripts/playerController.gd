@@ -15,8 +15,6 @@ func _ready():
 	for fuel in lantern_fuel:
 		if fuel.has_signal("collected"):  
 			fuel.collected.connect(_on_fuel_collected)
-			
-	
 
 func _on_fuel_collected():
 	light.refuel(50)  # Call Light's refuel function

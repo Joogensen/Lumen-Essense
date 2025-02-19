@@ -52,13 +52,14 @@ size = Vector2(109, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlk1d"]
 size = Vector2(38.5, 30.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3xk"]
-size = Vector2(89, 51)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8xte"]
 size = Vector2(17, 13.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3xk"]
+size = Vector2(89, 51)
+
 [node name="Main" type="Node2D"]
+position = Vector2(-1, 0)
 
 [node name="Generate-a-dark-factory-background-that-has-some-e" type="Sprite2D" parent="."]
 position = Vector2(580, 319)
@@ -88,6 +89,7 @@ script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 2
 visibility_layer = 2
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
@@ -215,12 +217,6 @@ color = Color(1, 1, 0, 1)
 position = Vector2(301.75, 244.75)
 shape = SubResource("RectangleShape2D_qlk1d")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." groups=["Platforms"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
-position = Vector2(223.5, 334.5)
-shape = SubResource("RectangleShape2D_sg3xk")
-
 [node name="StaticBody2D11" type="StaticBody2D" parent="." groups=["uv_platform"]]
 script = ExtResource("8_jq0ix")
 
@@ -234,3 +230,9 @@ offset_top = 166.0
 offset_right = 497.0
 offset_bottom = 181.0
 color = Color(1, 1, 0, 1)
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="." groups=["Platforms"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
+position = Vector2(223.5, 334.5)
+shape = SubResource("RectangleShape2D_sg3xk")

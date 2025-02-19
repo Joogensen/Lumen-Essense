@@ -28,7 +28,6 @@ func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
 
 func refuel(amount):
-	print("refueled")
 	current_fuel += amount
 	if current_fuel > max_fuel:
 		current_fuel = max_fuel
@@ -52,7 +51,6 @@ func consume_fuel(delta):
 	else:
 		flicker_timer.stop()
 		self.energy = 1.5  
-	
 
 func _on_FlickerTimer_timeout():
 	if current_fuel <= (max_fuel * 0.2):
