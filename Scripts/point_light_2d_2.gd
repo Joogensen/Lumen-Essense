@@ -8,6 +8,8 @@ var is_lit = true
 @onready var flicker_timer = Timer.new()
 @onready var light = self
 
+signal uv_active
+
 var light_colors = [
 	Color(1, 1, 1),  # White (default, fuel burns)
 	Color(1, 0, 1),  # Purple
@@ -39,7 +41,6 @@ func _process(delta):
 		consume_fuel(delta)
 
 func consume_fuel(delta):
-	print(current_fuel)
 	current_fuel -= fuel_burn_rate * delta  
 	if current_fuel <= 0:
 		current_fuel = 0
@@ -64,5 +65,7 @@ func cycle_light_color():
 	# If switching **back** to normal (white) mode, fuel burns again
 	if current_color_index == 0:
 		is_normal_mode = true
+		uv_active.emit(false)
 	else:
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
+		uv_active.emit(true)  # Emit the signal when the uv is active
