@@ -1,34 +1,55 @@
-[gd_scene load_steps=11 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=19 format=3 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="Texture2D" uid="uid://dsxy483ejcpid" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
+[ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
+[ext_resource type="Script" path="res://Scenes/area_2d.gd" id="5_v8i7n"]
+[ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lywd6"]
-size = Vector2(293, 56)
+size = Vector2(301, 71)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hiyi6"]
-polygon = PackedVector2Array(-146.5, -28, -145.5, 28, 145.5, 29, 145.5, -28)
+polygon = PackedVector2Array(-141.5, -29, -141.5, 43, 158.5, 42, 158.5, -19, 158.5, -27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
-size = Vector2(229, 80.75)
+size = Vector2(218.5, 81)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qum"]
-size = Vector2(39, 139)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_odluj"]
-normal = Vector2(0.00591706, -0.999982)
-distance = -195.68
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ek0ds"]
+radius = 68.0
+height = 216.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xf5as"]
 size = Vector2(334, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq2hv"]
+size = Vector2(73, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_veno2"]
+size = Vector2(89, 9)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2nlla"]
+normal = Vector2(-1, 0)
+distance = -15.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n8468"]
+normal = Vector2(1, 0)
+distance = -14.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tve56"]
+distance = -113.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
+a = Vector2(128, -8)
+b = Vector2(-111, -9)
+
 [node name="Main" type="Node2D"]
 
 [node name="Generate-a-dark-factory-background-that-has-some-e" type="Sprite2D" parent="."]
-position = Vector2(575, 319)
-scale = Vector2(0.552734, 0.626953)
+position = Vector2(580, 319)
+scale = Vector2(0.557617, 0.626953)
 texture = ExtResource("1_5uln4")
 
 [node name="Player" parent="." instance=ExtResource("1_ahjb2")]
@@ -54,47 +75,102 @@ script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 2
 visibility_layer = 2
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Platforms"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(650.5, 548)
+position = Vector2(659.5, 555.5)
 shape = SubResource("RectangleShape2D_lywd6")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
 position = Vector2(650.5, 548)
 occluder = SubResource("OccluderPolygon2D_hiyi6")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Platforms"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(910, 549)
+position = Vector2(918.25, 550)
 shape = SubResource("RectangleShape2D_2l3o2")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["Platforms"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(121.5, 459.625)
+position = Vector2(107.5, 459.5)
 shape = SubResource("RectangleShape2D_2l3o2")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["Platforms"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(255.5, 538.5)
-shape = SubResource("RectangleShape2D_n0qum")
+position = Vector2(208, 527)
+shape = SubResource("CapsuleShape2D_ek0ds")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(448, 549)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(-67, -130)
-shape = SubResource("WorldBoundaryShape2D_odluj")
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+[node name="StaticBody2D6" type="StaticBody2D" parent="." groups=["Platforms"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
-position = Vector2(1185, 490.5)
+position = Vector2(1193, 491)
 shape = SubResource("RectangleShape2D_xf5as")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="." groups=["Platforms"]]
+position = Vector2(750, 488)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(-149, -324)
+shape = SubResource("RectangleShape2D_hq2hv")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="." groups=["Platforms"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+position = Vector2(362.5, 173.5)
+shape = SubResource("RectangleShape2D_veno2")
+
+[node name="RightBoundary" type="StaticBody2D" parent="." groups=["WorldBoundary"]]
+position = Vector2(448, 549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
+position = Vector2(689, -178)
+shape = SubResource("WorldBoundaryShape2D_2nlla")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="." groups=["WorldBoundary"]]
+position = Vector2(448, 549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
+position = Vector2(-425, -141)
+shape = SubResource("WorldBoundaryShape2D_n8468")
+
+[node name="BottomBoundary" type="StaticBody2D" parent="." groups=["WorldBoundary"]]
+position = Vector2(394, 495)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
+shape = SubResource("WorldBoundaryShape2D_tve56")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Death"]]
+script = ExtResource("5_v8i7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(381, 598)
+shape = SubResource("SegmentShape2D_b5lgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(309, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(387, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+position = Vector2(466, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
+position = Vector2(601, 135)

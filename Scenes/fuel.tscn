@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://qw0pg7dirpay"]
+
+[ext_resource type="Script" path="res://Scripts/fuel.gd" id="1_wvo6n"]
+[ext_resource type="Texture2D" uid="uid://d0foqrbhyf8i4" path="res://Sprites/make-a-tin-of-kerosine-or-lamp-oil--no-background-.png" id="2_poaox"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2plhi"]
+radius = 7.0
+height = 22.0
+
+[node name="fuel" type="Area2D"]
+script = ExtResource("1_wvo6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2plhi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.10543e-15, -1)
+scale = Vector2(0.0166016, 0.0150538)
+texture = ExtResource("2_poaox")
