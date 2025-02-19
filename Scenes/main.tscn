@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
 [ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
-[ext_resource type="Script" path="res://Scenes/area_2d.gd" id="5_v8i7n"]
+[ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
-[ext_resource type="Script" path="res://Scenes/static_body_2d_5.gd" id="8_jq0ix"]
+[ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="8_jq0ix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lywd6"]
 size = Vector2(301, 71)

@@ -37,14 +37,26 @@ func refuel(amount):
 	print("Battery collected! Fuel increased to: ", current_fuel)
 
 func _process(delta):
-	if is_lit:
+	if is_lit and is_normal_mode:
 		consume_fuel(delta)
+		print("Fuel Level: ", current_fuel)
 
 func consume_fuel(delta):
 	current_fuel -= fuel_burn_rate * delta  
 	if current_fuel <= 0:
 		current_fuel = 0
 		turn_off_lantern()
+	elif current_fuel <= max_fuel * 0.2:
+		if flicker_timer.is_stopped():
+			flicker_timer.start()
+	else:
+		flicker_timer.stop()
+		self.energy = 1.5  
+	
+
+func _on_FlickerTimer_timeout():
+	if current_fuel <= (max_fuel * 0.2):
+		self.energy = randf_range(0.5, 1.5)  
 
 func turn_off_lantern():
 	is_lit = false
@@ -69,3 +81,4 @@ func cycle_light_color():
 	else:
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
 		uv_active.emit(true)  # Emit the signal when the uv is active
+	

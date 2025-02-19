@@ -17,7 +17,7 @@ func _ready():
 			fuel.collected.connect(_on_fuel_collected)
 			
 	
-	
+
 func _on_fuel_collected():
 	light.refuel(50)  # Call Light's refuel function
 
@@ -63,8 +63,3 @@ func disable_input():
 
 func enable_input():
 	can_move = true  # Stops listening to input	
-
-
-	
-	
-	
