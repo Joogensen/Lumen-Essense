@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0kvtlx4ugufk"]
+
+[ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="1_23n25"]
+
+[node name="StaticBody2D5" type="StaticBody2D" groups=["uv_platform"]]
+script = ExtResource("1_23n25")
