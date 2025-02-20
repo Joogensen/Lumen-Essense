@@ -15,7 +15,7 @@ func _ready():
 	for fuel in lantern_fuel:
 		if fuel.has_signal("collected"):  
 			fuel.collected.connect(_on_fuel_collected)
-
+	
 func _on_fuel_collected():
 	light.refuel(50)  # Call Light's refuel function
 
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * walk_speed, walk_speed * acceleration)
-		$Sprite2D.flip_h = (direction > 0)  
+		$Sprite2D.flip_h = (direction < 0)  
 		$PointLight2D.position.x = abs($PointLight2D.position.x) * (-1 if direction < 0 else 1)
 
 	else:

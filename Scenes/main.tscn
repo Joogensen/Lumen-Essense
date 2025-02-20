@@ -42,10 +42,6 @@ distance = -14.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tve56"]
 distance = -113.0
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
-a = Vector2(128, -8)
-b = Vector2(-111, -9)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qos6a"]
 size = Vector2(109, 29)
 
@@ -57,6 +53,10 @@ size = Vector2(17, 13.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3xk"]
 size = Vector2(89, 51)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
+a = Vector2(128, -8)
+b = Vector2(-111, -9)
 
 [node name="Main" type="Node2D"]
 position = Vector2(-1, 0)
@@ -70,6 +70,8 @@ texture = ExtResource("1_5uln4")
 position = Vector2(1100, 426)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+light_mask = 3
+visibility_layer = 3
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
@@ -85,13 +87,13 @@ shadow_color = Color(0, 0, 0, 0.333333)
 shadow_filter = 1
 shadow_filter_smooth = 0.5
 texture = ExtResource("2_me62g")
+texture_scale = 0.6
 script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-light_mask = 2
-visibility_layer = 2
+light_mask = 3
+visibility_layer = 3
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Platforms"]]
@@ -161,34 +163,6 @@ position = Vector2(394, 495)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_tve56")
 
-[node name="Area2D" type="Area2D" parent="." groups=["Death"]]
-script = ExtResource("5_v8i7n")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(381, 598)
-shape = SubResource("SegmentShape2D_b5lgk")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(309, 625)
-scale = Vector2(1.19231, 1.1875)
-texture = ExtResource("6_j5p50")
-flip_v = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
-position = Vector2(387, 625)
-scale = Vector2(1.19231, 1.1875)
-texture = ExtResource("6_j5p50")
-flip_v = true
-
-[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
-position = Vector2(466, 625)
-scale = Vector2(1.19231, 1.1875)
-texture = ExtResource("6_j5p50")
-flip_v = true
-
-[node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
-position = Vector2(601, 135)
-
 [node name="StaticBody2D5" type="StaticBody2D" parent="." groups=["uv_platform"]]
 script = ExtResource("8_jq0ix")
 
@@ -236,3 +210,34 @@ color = Color(1, 1, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
 position = Vector2(223.5, 334.5)
 shape = SubResource("RectangleShape2D_sg3xk")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Death"]]
+script = ExtResource("5_v8i7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(381, 598)
+shape = SubResource("SegmentShape2D_b5lgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(309, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(387, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+position = Vector2(466, 625)
+scale = Vector2(1.19231, 1.1875)
+texture = ExtResource("6_j5p50")
+flip_v = true
+
+[node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
+position = Vector2(601, 135)
+
+[node name="fuel2" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
+position = Vector2(85, 390)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://h37xcj1j61eg"]
+
+[ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="1_87je6"]
+[ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="2_rphmf"]
+
+[node name="PointLight2D" type="PointLight2D"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-22, 2)
+color = Color(1, 0.9, 0.6, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.333333)
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+texture = ExtResource("1_87je6")
+script = ExtResource("2_rphmf")
+current_fuel = 50.0

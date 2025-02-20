@@ -2,7 +2,7 @@ extends PointLight2D
 
 var max_fuel = 100.0
 @export var current_fuel = 100.0
-var fuel_burn_rate = 1.0
+var fuel_burn_rate = 10.0
 var is_lit = true
 
 @onready var flicker_timer = Timer.new()
@@ -10,8 +10,10 @@ var is_lit = true
 
 signal uv_active
 
+var parent = get_parent()
+
 var light_colors = [
-	Color(1, 1, 1),  # White (default, fuel burns)
+	Color(1.0, 0.9, 0.6),  # White (default, fuel burns)
 	Color(1, 0, 1),  # Purple
 ]
 
@@ -23,6 +25,8 @@ func _ready():
 	flicker_timer.wait_time = 0.1
 	flicker_timer.connect("timeout", Callable(self, "_on_FlickerTimer_timeout"))
 	add_child(flicker_timer)  
+	
+	self.color = light_colors[current_color_index] 
 
 func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
@@ -59,6 +63,7 @@ func _on_FlickerTimer_timeout():
 func turn_off_lantern():
 	is_lit = false
 	light.visible = false
+	
 	
 func _input(event):
 	if event.is_action_pressed("toggle_lantern") and current_fuel > 0:
