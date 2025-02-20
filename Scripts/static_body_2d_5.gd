@@ -4,7 +4,7 @@ extends StaticBody2D
 @onready var collision_shape = $CollisionShape2D  
 
 func _ready():
-	var uv = get_tree().root.get_node("Main/Player/PointLight2D")  # Adjust the path to your scene structure
+	var uv = get_tree().root.get_node("Main/Player/PointLight2D")
 
 	# Ensure the UV node exists and has the signal before connecting
 	if uv and uv.has_signal("uv_active"):

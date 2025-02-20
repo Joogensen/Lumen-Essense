@@ -84,9 +84,10 @@ func paranoia_check(delta):
 	var is_lit = $PointLight2D.is_lit
 	var is_normal_mode = $PointLight2D.is_normal_mode
 
-	if !is_lit or (is_lit and !is_normal_mode):
-		paranoia += paranoia_roi * delta
-		
-	if is_lit and paranoia > 0:
+	if is_lit and is_normal_mode:
 		paranoia -= paranoia_roi * delta
 		paranoia = max(paranoia, 0)
+	else:
+		paranoia += paranoia_roi * delta
+		
+	
