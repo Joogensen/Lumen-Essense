@@ -8,6 +8,11 @@ extends CharacterBody2D
 @export_range(0,1) var decelerate_on_jump_release = 0.5
 var can_move = true
 
+var paranoia = 0.0
+var paranoia_roi = 1.0
+
+var is_dead = false
+
 @onready var light = $PointLight2D
 
 func _ready():
@@ -18,6 +23,14 @@ func _ready():
 	
 func _on_fuel_collected():
 	light.refuel(50)  # Call Light's refuel function
+	
+func _process(delta):
+	if is_dead: 
+		return
+	paranoia_check(delta)  # Only runs if the player is alive
+	if paranoia >= 5.0:
+		is_dead = true 
+		die()
 
 func _physics_process(delta: float) -> void:
 	if !can_move:
@@ -55,9 +68,25 @@ func die():
 	await get_tree().create_timer(5.0).timeout  # Wait 1 second
 	get_tree().reload_current_scene()  # Restart the level
 	enable_input()
+	is_dead = true
 
 func disable_input():
 	can_move = false  # Stops listening to input
 
 func enable_input():
 	can_move = true  # Stops listening to input	
+	
+func paranoia_check(delta):
+	print(paranoia)
+	if is_dead:
+		return
+
+	var is_lit = $PointLight2D.is_lit
+	var is_normal_mode = $PointLight2D.is_normal_mode
+
+	if !is_lit or (is_lit and !is_normal_mode):
+		paranoia += paranoia_roi * delta
+		
+	if is_lit and paranoia > 0:
+		paranoia -= paranoia_roi * delta
+		paranoia = max(paranoia, 0)

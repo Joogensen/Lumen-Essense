@@ -2,7 +2,7 @@ extends PointLight2D
 
 var max_fuel = 100.0
 @export var current_fuel = 100.0
-var fuel_burn_rate = 10.0
+var fuel_burn_rate = 1.0
 var is_lit = true
 
 @onready var flicker_timer = Timer.new()
