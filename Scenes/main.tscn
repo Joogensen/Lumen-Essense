@@ -59,6 +59,8 @@ a = Vector2(128, -8)
 b = Vector2(-111, -9)
 
 [node name="Main" type="Node2D"]
+light_mask = 8
+visibility_layer = 8
 position = Vector2(-1, 0)
 
 [node name="Generate-a-dark-factory-background-that-has-some-e" type="Sprite2D" parent="."]
@@ -67,6 +69,8 @@ scale = Vector2(0.557617, 0.626953)
 texture = ExtResource("1_5uln4")
 
 [node name="Player" parent="." instance=ExtResource("1_ahjb2")]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(1100, 426)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -79,8 +83,8 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
-light_mask = 2
-visibility_layer = 2
+light_mask = 4
+visibility_layer = 4
 position = Vector2(-22, 2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.333333)
@@ -92,8 +96,8 @@ script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-light_mask = 3
-visibility_layer = 3
+light_mask = 8
+visibility_layer = 8
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Platforms"]]

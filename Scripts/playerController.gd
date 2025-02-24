@@ -102,44 +102,28 @@ func update_paranoia_animation(delta):
 		was_paranoia_zero = true  # 🔥 Remember that paranoia was at zero
 		return  
 
-	# 🔥 If paranoia was previously 0 but now increasing, restart "paranoia_low"
+	# 🔥 If paranoia was previously 0 but now increasing, restart "paranoia"
 	if was_paranoia_zero and paranoia > 0:
 		animated_sprite.visible = true  # Show effect again
-		animated_sprite.play("paranoia_low")  
+		animated_sprite.play("paranoia")  
 		was_paranoia_zero = false  # Reset tracker
 
 	if not animated_sprite.is_playing():
 		animated_sprite.play()  # 🔥 If animation stops, restart it
-
-	# Get the total number of frames for each animation
-	var last_frame = 6  # All animations have 7 frames (0-6)
-
-	# 🎬 Choose the right animation based on paranoia level
-	if paranoia < 2.5:
-		if animated_sprite.animation != "paranoia_low":
-			animated_sprite.play("paranoia_low")  
-		elif animated_sprite.frame == last_frame:
-			animated_sprite.play("paranoia_low")  # 🔥 Ensure it loops
-
-	elif paranoia >= 2.5 and paranoia < 5:
-		if animated_sprite.animation == "paranoia_low" and animated_sprite.frame == last_frame:
-			animated_sprite.play("paranoia_high")  # 🔥 Switch only when "paranoia_low" finishes
-		elif animated_sprite.animation != "paranoia_high":
-			animated_sprite.play("paranoia_high")  
-
-	else:  # If paranoia is decreasing (5 → 0)
-		if animated_sprite.animation == "paranoia_high" and animated_sprite.frame == last_frame:
-			animated_sprite.play("paranoia_decrease")  # 🔥 Switch only when "paranoia_high" finishes
-		elif animated_sprite.animation != "paranoia_decrease":
-			animated_sprite.play("paranoia_decrease")  
-
-	# 🎯 Dynamically Adjust FPS Based on Paranoia Level
-	animated_sprite.speed_scale = 2 + (paranoia * 0.5)  # Adjust speed dynamically
-
-	# 🎯 Adjust Scale (Smoothly Shrinking from 5.5 → 1.5)
-	var target_scale = 5.5 - (paranoia / 5.0) * (5.5 - 1.1)
-	animated_sprite.scale += (Vector2(target_scale, target_scale) - animated_sprite.scale) * delta * 10.0
 	
-	# 🎯 Adjust Transparency (More transparent when paranoia is low, fully visible at paranoia 5)
-	var target_alpha = 0.2 + (paranoia / 5.0) * (1.0 - 0.2)  # Min 0.2 (almost transparent), Max 1.0 (fully visible)
+# 🎯 Adjust FPS (Capped at 20, using an upward curve)
+	var min_fps = 8.0  # 🔥 Lowest FPS when paranoia is low
+	var max_fps = 24.0 # 🔥 Max FPS when paranoia is 5
+	var fps_factor = pow(paranoia / 5.0, 1.2)  # Quadratic scaling for smooth speed-up
+	var target_fps = min_fps + fps_factor * (max_fps - min_fps)  # 🔥 Scale FPS but cap at 20
+
+	animated_sprite.speed_scale = target_fps / 14.0  # 🔥 Adjust animation speed based on FPS scaling
+
+	# 🎯 Adjust Scale with an Exponential Curve (5.5 → 1.5 with an upward curve)
+	var paranoia_factor = pow(paranoia / 5.0, 1.2)  # 🔥 Quadratic easing: small changes at first, bigger changes later
+	var target_scale = 6.0 - paranoia_factor * (6.0 - 1.0)  # Scales downward with an upward curve
+	animated_sprite.scale = animated_sprite.scale.lerp(Vector2(target_scale, target_scale), delta * 15.0)
+
+	# 🎯 Adjust Transparency with an Exponential Curve
+	var target_alpha = 0.2 + pow(paranoia / 5.0, 1.2) * (1.0 - 0.2)  # More transparent at low paranoia, solid at high
 	animated_sprite.modulate = animated_sprite.modulate.lerp(Color(1.0, 0.0, 0.0, target_alpha), delta * 15.0)  # 🔥 Faster transparency transition
