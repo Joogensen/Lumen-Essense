@@ -15,6 +15,9 @@ var current_frame = 15  # Start at blank frame
 
 @onready var light = $PointLight2D
 @onready var animated_sprite = $AnimatedSprite2D  
+@onready var footstep_audio = $Footsteps
+@onready var background_audio = $Fridge #testing stuff
+
 
 func _ready():
 	var lantern_fuel = get_tree().get_nodes_in_group("lantern_fuel")
@@ -43,6 +46,7 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		footstep_audio.stream_paused = true
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
@@ -58,8 +62,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, direction * walk_speed, walk_speed * acceleration)
 		$Sprite2D.flip_h = (direction < 0)  
 		$PointLight2D.position.x = abs($PointLight2D.position.x) * (-1 if direction < 0 else 1)
+		footstep_audio.stream_paused = false #testing stuff
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
+		footstep_audio.stream_paused = true
 
 	move_and_slide()
 
@@ -67,6 +73,7 @@ func die():
 	print("Player has died!")
 	hide()
 	disable_input()
+	background_audio.pause() #testing stuff
 	await get_tree().create_timer(5.0).timeout  
 	get_tree().reload_current_scene()  
 	enable_input()
