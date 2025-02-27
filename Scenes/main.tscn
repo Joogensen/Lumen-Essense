@@ -1,14 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=25 format=3 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="Texture2D" uid="uid://dsxy483ejcpid" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
-[ext_resource type="AudioStream" uid="uid://c2v6jmpmjwhii" path="res://Audio/concrete footsteps.mp3" id="5_f32qc"]
 [ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
-[ext_resource type="AudioStream" uid="uid://8ljvn23rl2t3" path="res://Audio/scary fridge noises.mp3" id="6_ldamd"]
 [ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="8_jq0ix"]
 [ext_resource type="AudioStream" uid="uid://c1sa2ye4vpw06" path="res://Audio/eerie-ambient-10-205803.mp3" id="10_71fwy"]
 
@@ -101,13 +99,6 @@ texture = ExtResource("2_me62g")
 texture_scale = 0.6
 script = ExtResource("4_ii5tc")
 current_fuel = 50.0
-
-[node name="Footsteps" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("5_f32qc")
-volume_db = 24.0
-
-[node name="Fridge" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource("6_ldamd")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 8
@@ -262,4 +253,5 @@ position = Vector2(85, 390)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_71fwy")
+volume_db = -20.0
 autoplay = true

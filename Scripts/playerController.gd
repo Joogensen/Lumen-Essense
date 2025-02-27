@@ -12,11 +12,10 @@ var paranoia = 0.0
 var paranoia_roi = 1.0
 var is_dead = false
 var current_frame = 15  # Start at blank frame
-
+@onready var walk_animation_player: AnimationPlayer = $WalkAnimationPlayer
 @onready var light = $PointLight2D
 @onready var animated_sprite = $AnimatedSprite2D  
-@onready var footstep_audio = $Footsteps
-@onready var background_audio = $Fridge #testing stuff
+@onready var footstep: AudioStreamPlayer2D = $PlayerAudios/Footstep
 
 
 func _ready():
@@ -46,7 +45,6 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		footstep_audio.stream_paused = true
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
@@ -62,18 +60,21 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, direction * walk_speed, walk_speed * acceleration)
 		$Sprite2D.flip_h = (direction < 0)  
 		$PointLight2D.position.x = abs($PointLight2D.position.x) * (-1 if direction < 0 else 1)
-		footstep_audio.stream_paused = false #testing stuff
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
-		footstep_audio.stream_paused = true
+	
+	if (velocity.length()>0.0 and is_on_floor()):
+		walk_animation_player.play("walk")
 
 	move_and_slide()
+func _play_footstep_audio():
+	footstep.pitch_scale = randf_range(.8,1.2)
+	footstep.play()
 
 func die():
 	print("Player has died!")
 	hide()
 	disable_input()
-	background_audio.pause() #testing stuff
 	await get_tree().create_timer(5.0).timeout  
 	get_tree().reload_current_scene()  
 	enable_input()

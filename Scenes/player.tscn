@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=58 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="Texture2D" uid="uid://dga56qvq1fo5v" path="res://Sprites/FinalSprite-export.png" id="2_yft50"]
 [ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
+[ext_resource type="AudioStream" uid="uid://njtdltalmv2w" path="res://Audio/concrete_sample_5.wav" id="4_ar5tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yynyd"]
 size = Vector2(22, 50)
@@ -373,6 +374,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_gs8ou"]
+resource_name = "walk"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3448"]
+_data = {
+"walk": SubResource("Animation_gs8ou")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mtxti")
 
@@ -391,3 +414,14 @@ sprite_frames = SubResource("SpriteFrames_piecj")
 animation = &"paranoia"
 frame = 15
 frame_progress = 0.518381
+
+[node name="WalkAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h3448")
+}
+
+[node name="PlayerAudios" type="Node2D" parent="."]
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("4_ar5tu")
+attenuation = 1.7411
