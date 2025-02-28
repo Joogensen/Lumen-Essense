@@ -67,6 +67,7 @@ func _physics_process(delta: float) -> void:
 		walk_animation_player.play("walk")
 
 	move_and_slide()
+	
 func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(.8,1.2)
 	footstep.play()
