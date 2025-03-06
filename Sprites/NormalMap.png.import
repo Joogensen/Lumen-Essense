@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cls8ai5mjy61e"
-path="res://.godot/imported/FinalSprite.png-cdf3d5bf9b68e1a6211eca17d848ed18.ctex"
+uid="uid://ddeg3c4irrlyg"
+path="res://.godot/imported/NormalMap.png-4b65caedb4114778ae1cd6cbad993063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/FinalSprite.png"
-dest_files=["res://.godot/imported/FinalSprite.png-cdf3d5bf9b68e1a6211eca17d848ed18.ctex"]
+source_file="res://Sprites/NormalMap.png"
+dest_files=["res://.godot/imported/NormalMap.png-4b65caedb4114778ae1cd6cbad993063.ctex"]
 
 [params]
 

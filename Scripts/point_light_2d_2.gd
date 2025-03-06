@@ -5,6 +5,8 @@ var max_fuel = 100.0
 var fuel_burn_rate = 1.0
 var is_lit = true
 
+@export var canvas_modulate_node: CanvasModulate  # Reference to main light modulate
+
 @onready var flicker_timer = Timer.new()
 @onready var light = self
 
@@ -40,9 +42,22 @@ func refuel(amount):
 	print("Battery collected! Fuel increased to: ", current_fuel)
 
 func _process(delta):
+	if not canvas_modulate_node:
+		print("ERROR: CanvasModulate reference missing!")
+		return
+	
+	# Corrected logic: Check if the light is ON (CanvasModulate is OFF)
+	var is_light_on = not canvas_modulate_node.visible
+
+	if is_light_on:
+		print("CanvasModulate is OFF. Pausing fuel consumption.")
+		return  # Stop processing fuel burn
+
+	# If lights are OFF, fuel burns normally
 	if is_lit and is_normal_mode:
 		consume_fuel(delta)
 		print("Fuel Level: ", current_fuel)
+
 
 func consume_fuel(delta):
 	current_fuel -= fuel_burn_rate * delta  
@@ -54,7 +69,7 @@ func consume_fuel(delta):
 			flicker_timer.start()
 	else:
 		flicker_timer.stop()
-		self.energy = 1.5  
+		self.energy = 1.5
 
 func _on_FlickerTimer_timeout():
 	if current_fuel <= (max_fuel * 0.2):
@@ -63,7 +78,6 @@ func _on_FlickerTimer_timeout():
 func turn_off_lantern():
 	is_lit = false
 	light.visible = false
-	
 	
 func _input(event):
 	if event.is_action_pressed("toggle_lantern") and current_fuel > 0:
@@ -84,4 +98,3 @@ func cycle_light_color():
 	else:
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
 		uv_active.emit(true)  # Emit the signal when the uv is active
-	

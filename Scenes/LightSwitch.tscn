@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c13ceq0624wy8"]
+
+[ext_resource type="Texture2D" uid="uid://cg3fw5qhcexxl" path="res://Sprites/LightSwitch.png" id="1_dy5yu"]
+[ext_resource type="Script" path="res://Scenes/light_switch.gd" id="1_gbsng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyw8p"]
+atlas = ExtResource("1_dy5yu")
+region = Rect2(16, 2, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yauc"]
+atlas = ExtResource("1_dy5yu")
+region = Rect2(0, 2, 16, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m1pt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyw8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yauc")
+}],
+"loop": false,
+"name": &"LightSwitch",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fvrot"]
+radius = 7.07107
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_gbsng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6m1pt")
+animation = &"LightSwitch"
+frame_progress = 0.528743
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fvrot")
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area2D_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=28 format=3 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="Texture2D" uid="uid://dsxy483ejcpid" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="8_jq0ix"]
+[ext_resource type="AudioStream" path="res://Audio/eerie-ambient-10-205803.mp3" id="10_71fwy"]
+[ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lywd6"]
 size = Vector2(301, 71)
@@ -18,18 +20,24 @@ polygon = PackedVector2Array(-141.5, -29, -141.5, 43, 158.5, 42, 158.5, -19, 158
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3o2"]
 size = Vector2(217.813, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf5as"]
+size = Vector2(334, 41)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ek0ds"]
 radius = 68.0
 height = 216.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf5as"]
-size = Vector2(334, 41)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3xk"]
+size = Vector2(89, 51)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq2hv"]
-size = Vector2(73, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y1u"]
+size = Vector2(124, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_veno2"]
 size = Vector2(93, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq2hv"]
+size = Vector2(73, 10)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2nlla"]
 normal = Vector2(-1, 0)
@@ -42,21 +50,21 @@ distance = -14.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tve56"]
 distance = -113.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qos6a"]
-size = Vector2(109, 29)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlk1d"]
 size = Vector2(38.5, 30.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8xte"]
 size = Vector2(17, 13.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg3xk"]
-size = Vector2(89, 51)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qos6a"]
+size = Vector2(161, 29)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
 a = Vector2(128, -8)
 b = Vector2(-111, -9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8vq3"]
+size = Vector2(59, 53)
 
 [node name="Main" type="Node2D"]
 light_mask = 8
@@ -68,10 +76,26 @@ position = Vector2(580, 319)
 scale = Vector2(0.557617, 0.626953)
 texture = ExtResource("1_5uln4")
 
-[node name="Player" parent="." instance=ExtResource("1_ahjb2")]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(1100, 426)
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+light_mask = 8
+visibility_layer = 8
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1087.0
+offset_top = 190.0
+offset_right = 1116.0
+offset_bottom = 226.0
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("10_as27t")]
+position = Vector2(1102, 210)
+canvas_modulate_node = NodePath("../CanvasModulate")
+
+[node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("1_ahjb2")]
+position = Vector2(1042, 197)
+canvas_modulate_node = NodePath("../CanvasModulate")
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 light_mask = 3
@@ -86,70 +110,87 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-light_mask = 4
-visibility_layer = 4
+[node name="PointLight2D" type="PointLight2D" parent="Player" node_paths=PackedStringArray("canvas_modulate_node")]
+light_mask = 5
+visibility_layer = 5
 position = Vector2(-22, 2)
+energy = 2.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.333333)
 shadow_filter = 1
 shadow_filter_smooth = 0.5
 texture = ExtResource("2_me62g")
-texture_scale = 0.6
 script = ExtResource("4_ii5tc")
 current_fuel = 50.0
+canvas_modulate_node = NodePath("../../CanvasModulate")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-light_mask = 8
-visibility_layer = 8
-color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+[node name="Floor1" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Platforms"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor1"]
 position = Vector2(659.5, 555.5)
 shape = SubResource("RectangleShape2D_lywd6")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Floor1"]
 position = Vector2(650.5, 548)
 occluder = SubResource("OccluderPolygon2D_hiyi6")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Platforms"]]
+[node name="Floor2" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
 position = Vector2(918.906, 550)
 shape = SubResource("RectangleShape2D_2l3o2")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["Platforms"]]
+[node name="Floor3" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
 position = Vector2(103.625, 460)
 shape = SubResource("RectangleShape2D_2l3o2")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["Platforms"]]
+[node name="Floor4" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(208, 527)
-shape = SubResource("CapsuleShape2D_ek0ds")
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="." groups=["Platforms"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4"]
 position = Vector2(1193, 491)
 shape = SubResource("RectangleShape2D_xf5as")
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="." groups=["Platforms"]]
-position = Vector2(750, 488)
+[node name="PipeWall" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
-position = Vector2(-149, -324)
-shape = SubResource("RectangleShape2D_hq2hv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeWall"]
+position = Vector2(208, 527)
+shape = SubResource("CapsuleShape2D_ek0ds")
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="." groups=["Platforms"]]
+[node name="PipeBlock" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeBlock"]
+position = Vector2(223.5, 334.5)
+shape = SubResource("RectangleShape2D_sg3xk")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(1088, 263.5)
+shape = SubResource("RectangleShape2D_f1y1u")
+
+[node name="Lamp1" type="StaticBody2D" parent="." groups=["Platforms"]]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp1"]
 position = Vector2(364.5, 173.5)
 shape = SubResource("RectangleShape2D_veno2")
+
+[node name="Lamp2" type="StaticBody2D" parent="." groups=["Platforms"]]
+position = Vector2(750, 488)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp2"]
+position = Vector2(-149, -324)
+shape = SubResource("RectangleShape2D_hq2hv")
 
 [node name="RightBoundary" type="StaticBody2D" parent="." groups=["WorldBoundary"]]
 position = Vector2(448, 549)
@@ -171,74 +212,72 @@ position = Vector2(394, 495)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_tve56")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="." groups=["uv_platform"]]
+[node name="UvPlatform1" type="StaticBody2D" parent="." groups=["uv_platform"]]
 script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D5"]
-offset_left = 338.0
-offset_top = 492.0
-offset_right = 446.0
-offset_bottom = 521.0
-color = Color(1, 1, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(391.5, 506.5)
-shape = SubResource("RectangleShape2D_qos6a")
-
-[node name="StaticBody2D10" type="StaticBody2D" parent="." groups=["uv_platform"]]
-script = ExtResource("8_jq0ix")
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D10"]
+[node name="ColorRect" type="ColorRect" parent="UvPlatform1"]
 offset_left = 282.0
 offset_top = 231.0
 offset_right = 320.0
 offset_bottom = 260.0
 color = Color(1, 1, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform1"]
 position = Vector2(301.75, 244.75)
 shape = SubResource("RectangleShape2D_qlk1d")
 
-[node name="StaticBody2D11" type="StaticBody2D" parent="." groups=["uv_platform"]]
+[node name="UvPlatform2" type="StaticBody2D" parent="." groups=["uv_platform"]]
 script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D11"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform2"]
 position = Vector2(487.5, 174.25)
 shape = SubResource("RectangleShape2D_i8xte")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D11"]
+[node name="ColorRect" type="ColorRect" parent="UvPlatform2"]
 offset_left = 478.0
 offset_top = 166.0
 offset_right = 497.0
 offset_bottom = 181.0
 color = Color(1, 1, 0, 1)
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." groups=["Platforms"]]
+[node name="UvPlatform3" type="StaticBody2D" parent="." groups=["uv_platform"]]
+position = Vector2(411, -302)
+script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
-position = Vector2(223.5, 334.5)
-shape = SubResource("RectangleShape2D_sg3xk")
+[node name="ColorRect" type="ColorRect" parent="UvPlatform3"]
+offset_left = 338.0
+offset_top = 492.0
+offset_right = 499.0
+offset_bottom = 521.0
+color = Color(1, 1, 0, 1)
 
-[node name="Area2D" type="Area2D" parent="." groups=["Death"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform3"]
+position = Vector2(417.5, 506.5)
+shape = SubResource("RectangleShape2D_qos6a")
+
+[node name="Spikes" type="Area2D" parent="." groups=["Death"]]
 script = ExtResource("5_v8i7n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
 position = Vector2(381, 598)
 shape = SubResource("SegmentShape2D_b5lgk")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Spikes"]
 position = Vector2(309, 625)
 scale = Vector2(1.19231, 1.1875)
 texture = ExtResource("6_j5p50")
 flip_v = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Spikes"]
 position = Vector2(387, 625)
 scale = Vector2(1.19231, 1.1875)
 texture = ExtResource("6_j5p50")
 flip_v = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D3" type="Sprite2D" parent="Spikes"]
 position = Vector2(466, 625)
 scale = Vector2(1.19231, 1.1875)
 texture = ExtResource("6_j5p50")
@@ -249,3 +288,23 @@ position = Vector2(601, 135)
 
 [node name="fuel2" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
 position = Vector2(85, 390)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_71fwy")
+volume_db = -20.0
+autoplay = true
+
+[node name="Crate" type="RigidBody2D" parent="."]
+position = Vector2(592, 464)
+mass = 0.1
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Crate"]
+offset_top = -13.0
+offset_right = 59.0
+offset_bottom = 40.0
+color = Color(0.633792, 0.43595, 0.180674, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crate"]
+position = Vector2(29.5, 13.5)
+shape = SubResource("RectangleShape2D_w8vq3")

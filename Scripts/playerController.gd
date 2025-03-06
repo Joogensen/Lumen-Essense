@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var canvas_modulate_node: CanvasModulate  # Reference to the light modulate
 @export var walk_speed = 150.0
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
@@ -12,9 +13,13 @@ var paranoia = 0.0
 var paranoia_roi = 1.0
 var is_dead = false
 var current_frame = 15  # Start at blank frame
-
+@onready var walk_animation_player: AnimationPlayer = $WalkAnimationPlayer
 @onready var light = $PointLight2D
 @onready var animated_sprite = $AnimatedSprite2D  
+@onready var footstep: AudioStreamPlayer2D = $PlayerAudios/Footstep
+
+const PUSH_FORCE = 18.0
+const MIN_PUSH_FORCE = 10.0
 
 func _ready():
 	var lantern_fuel = get_tree().get_nodes_in_group("lantern_fuel")
@@ -22,16 +27,23 @@ func _ready():
 		if fuel.has_signal("collected"):  
 			fuel.collected.connect(_on_fuel_collected)
 
-
 func _process(delta):
 	if is_dead: 
 		return
-	paranoia_check(delta)  
-	update_paranoia_animation(delta)  # 🔥 Now using delta for smooth movement
 
+	# Check if CanvasModulate is enabled or disabled
+	if canvas_modulate_node and not canvas_modulate_node.visible:
+		paranoia = 0  # Prevent paranoia from increasing
+		light.visible = false  # Turn off the lantern
+	else:
+		light.visible = true  # Turn off the lantern
+		paranoia_check(delta)  # Run paranoia check normally
+		update_paranoia_animation(delta)  # Animate paranoia effects
+	
 	if paranoia >= 5.0:
 		is_dead = true 
 		die()
+	
 	print("Process running")
 
 func _on_fuel_collected():
@@ -60,8 +72,21 @@ func _physics_process(delta: float) -> void:
 		$PointLight2D.position.x = abs($PointLight2D.position.x) * (-1 if direction < 0 else 1)
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
+	
+	if (velocity.length() > 0.0 and is_on_floor()):
+		walk_animation_player.play("walk")
 
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			var push_force = (PUSH_FORCE * velocity.length() / walk_speed) + MIN_PUSH_FORCE
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+
+func _play_footstep_audio():
+	footstep.pitch_scale = randf_range(.8,1.2)
+	footstep.play()
 
 func die():
 	print("Player has died!")
@@ -79,8 +104,8 @@ func enable_input():
 	can_move = true  
 
 func paranoia_check(delta):
-	if is_dead:
-		return
+	if is_dead or (canvas_modulate_node and not canvas_modulate_node.visible):
+		return  # Stop paranoia processing if canvas is off
 
 	var is_lit = $PointLight2D.is_lit
 	var is_normal_mode = $PointLight2D.is_normal_mode
