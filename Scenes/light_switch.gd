@@ -16,7 +16,7 @@ func _on_Area2D_body_exited(body):
 		player_in_range = false
 
 func _input(event):
-	if player_in_range and event.is_action_pressed("light_switch"):
+	if player_in_range and event.is_action_pressed("light_switch") and !is_light_on:
 		_toggle_switch()
 
 func _toggle_switch():
