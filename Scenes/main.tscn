@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=28 format=3 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="Texture2D" uid="uid://dsxy483ejcpid" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
 [ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
+[ext_resource type="Texture2D" uid="uid://2mquoxs2eyn2" path="res://Sprites/arrow.png" id="6_0g6ni"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="8_jq0ix"]
 [ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
@@ -49,6 +50,13 @@ distance = -14.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tve56"]
 distance = -113.0
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
+a = Vector2(128, -8)
+b = Vector2(-111, -9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8vq3"]
+size = Vector2(59, 53)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlk1d"]
 size = Vector2(38.5, 30.5)
 
@@ -57,13 +65,6 @@ size = Vector2(17, 13.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qos6a"]
 size = Vector2(161, 29)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
-a = Vector2(128, -8)
-b = Vector2(-111, -9)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8vq3"]
-size = Vector2(59, 53)
 
 [node name="Main" type="Node2D"]
 light_mask = 8
@@ -75,11 +76,6 @@ position = Vector2(580, 319)
 scale = Vector2(0.557617, 0.626953)
 texture = ExtResource("1_5uln4")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-light_mask = 8
-visibility_layer = 8
-color = Color(0.0666667, 0.0666667, 0.0666667, 1)
-
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 1087.0
 offset_top = 190.0
@@ -87,13 +83,19 @@ offset_right = 1116.0
 offset_bottom = 226.0
 color = Color(0, 0, 0, 1)
 
-[node name="Area2D" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("10_as27t")]
+[node name="LightSwitch" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("10_as27t")]
 position = Vector2(1102, 210)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
-[node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("1_ahjb2")]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+light_mask = 0
+visibility_layer = 0
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
 position = Vector2(1089, 428)
 canvas_modulate_node = NodePath("../CanvasModulate")
+light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -122,6 +124,13 @@ texture = ExtResource("2_me62g")
 script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 canvas_modulate_node = NodePath("../../CanvasModulate")
+
+[node name="Arrow" type="Sprite2D" parent="Player"]
+visible = false
+light_mask = 5
+texture_filter = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_0g6ni")
 
 [node name="Floor1" type="StaticBody2D" parent="." groups=["Platforms"]]
 metadata/_edit_group_ = true
@@ -211,52 +220,6 @@ position = Vector2(394, 495)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_tve56")
 
-[node name="UvPlatform1" type="StaticBody2D" parent="." groups=["uv_platform"]]
-script = ExtResource("8_jq0ix")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="UvPlatform1"]
-offset_left = 282.0
-offset_top = 231.0
-offset_right = 320.0
-offset_bottom = 260.0
-color = Color(1, 1, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform1"]
-position = Vector2(301.75, 244.75)
-shape = SubResource("RectangleShape2D_qlk1d")
-
-[node name="UvPlatform2" type="StaticBody2D" parent="." groups=["uv_platform"]]
-script = ExtResource("8_jq0ix")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform2"]
-position = Vector2(487.5, 174.25)
-shape = SubResource("RectangleShape2D_i8xte")
-
-[node name="ColorRect" type="ColorRect" parent="UvPlatform2"]
-offset_left = 478.0
-offset_top = 166.0
-offset_right = 497.0
-offset_bottom = 181.0
-color = Color(1, 1, 0, 1)
-
-[node name="UvPlatform3" type="StaticBody2D" parent="." groups=["uv_platform"]]
-position = Vector2(411, -302)
-script = ExtResource("8_jq0ix")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="UvPlatform3"]
-offset_left = 338.0
-offset_top = 492.0
-offset_right = 499.0
-offset_bottom = 521.0
-color = Color(1, 1, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform3"]
-position = Vector2(417.5, 506.5)
-shape = SubResource("RectangleShape2D_qos6a")
-
 [node name="Spikes" type="Area2D" parent="." groups=["Death"]]
 script = ExtResource("5_v8i7n")
 
@@ -306,3 +269,49 @@ color = Color(0.633792, 0.43595, 0.180674, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crate"]
 position = Vector2(29.5, 13.5)
 shape = SubResource("RectangleShape2D_w8vq3")
+
+[node name="UvPlatform1" type="StaticBody2D" parent="." groups=["uv_platform"]]
+script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UvPlatform1"]
+offset_left = 282.0
+offset_top = 231.0
+offset_right = 320.0
+offset_bottom = 260.0
+color = Color(1, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform1"]
+position = Vector2(301.75, 244.75)
+shape = SubResource("RectangleShape2D_qlk1d")
+
+[node name="UvPlatform2" type="StaticBody2D" parent="." groups=["uv_platform"]]
+script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform2"]
+position = Vector2(487.5, 174.25)
+shape = SubResource("RectangleShape2D_i8xte")
+
+[node name="ColorRect" type="ColorRect" parent="UvPlatform2"]
+offset_left = 478.0
+offset_top = 166.0
+offset_right = 497.0
+offset_bottom = 181.0
+color = Color(1, 1, 0, 1)
+
+[node name="UvPlatform3" type="StaticBody2D" parent="." groups=["uv_platform"]]
+position = Vector2(411, -302)
+script = ExtResource("8_jq0ix")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UvPlatform3"]
+offset_left = 338.0
+offset_top = 492.0
+offset_right = 499.0
+offset_bottom = 521.0
+color = Color(1, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UvPlatform3"]
+position = Vector2(417.5, 506.5)
+shape = SubResource("RectangleShape2D_qos6a")

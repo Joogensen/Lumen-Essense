@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
+@export var orbit_radius: float = 64.0
+
 @export var canvas_modulate_node: CanvasModulate  
+@export var light_switch: Area2D
 @export var walk_speed = 150.0
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
@@ -18,6 +21,7 @@ var is_dead = false
 @onready var animated_sprite = $ParanoiaAnimationPlayer
 @onready var footstep: AudioStreamPlayer2D = $PlayerAudios/Footstep
 
+
 const PUSH_FORCE = 18.0
 const MIN_PUSH_FORCE = 10.0
 
@@ -25,6 +29,12 @@ func _ready():
 	for fuel in get_tree().get_nodes_in_group("lantern_fuel"):
 		if fuel.has_signal("collected"):  
 			fuel.collected.connect(_on_fuel_collected)
+	
+	var uv = get_tree().root.get_node("Main/Player/PointLight2D")
+
+	# Ensure the UV node exists and has the signal before connecting
+	if uv and uv.has_signal("uv_active"):
+		uv.uv_active.connect(_on_PointLight2D_uv_active)  # Connect the signal
 
 func _process(delta):
 	if is_dead: return
@@ -75,6 +85,21 @@ func _physics_process(delta: float) -> void:
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D and is_on_floor():
 			c.get_collider().apply_central_impulse(-c.get_normal() * ((PUSH_FORCE * velocity.length() / walk_speed) + MIN_PUSH_FORCE))
+	
+	if $Arrow.visible and light_switch:
+		$Arrow.visible = true
+		var arrow_direction = light_switch.global_position - global_position
+		# Position the arrow on the circle
+		$Arrow.position = arrow_direction.normalized() * orbit_radius
+
+		# Rotate arrow so its "up" aligns with direction
+		$Arrow.rotation = arrow_direction.angle() - deg_to_rad(270)
+
+		# Hide arrow if close enough
+		if arrow_direction.length() < 100.0:
+			$Arrow.visible = false
+
+
 
 func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(.8,1.2)
@@ -128,3 +153,6 @@ func update_paranoia_animation(delta):
 	# Apply transformations to paranoia_sprite, NOT animated_sprite
 	paranoia_sprite.scale = paranoia_sprite.scale.lerp(Vector2(6.0 - paranoia_factor * 5.0, 6.0 - paranoia_factor * 5.0), delta * 15.0)
 	paranoia_sprite.modulate = paranoia_sprite.modulate.lerp(Color(1.0, 0.0, 0.0, 0.2 + paranoia_factor * 0.8), delta * 15.0)
+
+func _on_PointLight2D_uv_active(is_uv_active: bool) -> void:
+	$Arrow.visible = is_uv_active
