@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://dsxy483ejcpid" path="res://Sprites/generate-a-dark-factory-background-that-has-some-e.png" id="1_5uln4"]
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
+[ext_resource type="Texture2D" uid="uid://b5lh1moqi58er" path="res://Sprites/right-arrow.png" id="4_a04uo"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
 [ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
-[ext_resource type="Texture2D" uid="uid://2mquoxs2eyn2" path="res://Sprites/arrow.png" id="6_0g6ni"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="Script" path="res://Scripts/static_body_2d_5.gd" id="8_jq0ix"]
 [ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
@@ -93,7 +93,7 @@ visibility_layer = 0
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(1089, 428)
+position = Vector2(1093, 427)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
@@ -111,6 +111,14 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="Arrow" type="Sprite2D" parent="Player"]
+visible = false
+light_mask = 8
+visibility_layer = 8
+texture_filter = 1
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_a04uo")
+
 [node name="PointLight2D" type="PointLight2D" parent="Player" node_paths=PackedStringArray("canvas_modulate_node")]
 light_mask = 5
 visibility_layer = 5
@@ -124,13 +132,6 @@ texture = ExtResource("2_me62g")
 script = ExtResource("4_ii5tc")
 current_fuel = 50.0
 canvas_modulate_node = NodePath("../../CanvasModulate")
-
-[node name="Arrow" type="Sprite2D" parent="Player"]
-visible = false
-light_mask = 5
-texture_filter = 1
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("6_0g6ni")
 
 [node name="Floor1" type="StaticBody2D" parent="." groups=["Platforms"]]
 metadata/_edit_group_ = true

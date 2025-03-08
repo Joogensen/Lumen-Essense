@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		$Arrow.position = arrow_direction.normalized() * orbit_radius
 
 		# Rotate arrow so its "up" aligns with direction
-		$Arrow.rotation = arrow_direction.angle() - deg_to_rad(270)
+		$Arrow.rotation = arrow_direction.angle() - deg_to_rad(0)
 
 		# Hide arrow if close enough
 		if arrow_direction.length() < 100.0:
