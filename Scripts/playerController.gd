@@ -37,7 +37,6 @@ func _process(delta):
 		paranoia = 0  
 		paranoia_sprite.visible = false  
 
-
 	if paranoia >= 5.0:
 		die()
 
@@ -74,7 +73,7 @@ func _physics_process(delta: float) -> void:
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
+		if c.get_collider() is RigidBody2D and is_on_floor():
 			c.get_collider().apply_central_impulse(-c.get_normal() * ((PUSH_FORCE * velocity.length() / walk_speed) + MIN_PUSH_FORCE))
 
 func _play_footstep_audio():
