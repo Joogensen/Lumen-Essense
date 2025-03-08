@@ -35,6 +35,8 @@ func _process(delta):
 		update_paranoia_animation(delta)
 	else:
 		paranoia = 0  
+		paranoia_sprite.visible = false  
+
 
 	if paranoia >= 5.0:
 		die()

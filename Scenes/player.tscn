@@ -125,7 +125,6 @@ libraries = {
 }
 
 [node name="SpriteParanoia" type="Sprite2D" parent="."]
-visible = false
 texture_filter = 1
 scale = Vector2(6, 6)
 texture = ExtResource("3_5vkk6")
@@ -137,8 +136,6 @@ libraries = {
 }
 
 [node name="PlayerAudios" type="Node2D" parent="."]
-visible = false
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
-visible = false
 attenuation = 1.7411
