@@ -1,7 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://h37xcj1j61eg"]
+[gd_scene load_steps=8 format=3 uid="uid://h37xcj1j61eg"]
 
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="1_87je6"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="2_rphmf"]
+[ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="3_c3l6f"]
+[ext_resource type="AudioStream" uid="uid://dcujgasubb0hk" path="res://Audio/uv_light_audio.wav" id="4_qasr1"]
+[ext_resource type="AudioStream" uid="uid://8ljvn23rl2t3" path="res://Audio/scary fridge noises.mp3" id="5_bjvy0"]
+
+[sub_resource type="Animation" id="Animation_ekl03"]
+resource_name = "lights"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_switch_light_audio"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_normal_light_audio"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_uv_light_audio"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1b5d0"]
+_data = {
+"lights": SubResource("Animation_ekl03")
+}
 
 [node name="PointLight2D" type="PointLight2D"]
 light_mask = 2
@@ -16,3 +69,19 @@ shadow_filter_smooth = 0.5
 texture = ExtResource("1_87je6")
 script = ExtResource("2_rphmf")
 current_fuel = 50.0
+
+[node name="LightAudio" type="Node2D" parent="."]
+
+[node name="normal_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
+stream = ExtResource("3_c3l6f")
+
+[node name="uv_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
+stream = ExtResource("4_qasr1")
+
+[node name="switch_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
+stream = ExtResource("5_bjvy0")
+
+[node name="LightsAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1b5d0")
+}
