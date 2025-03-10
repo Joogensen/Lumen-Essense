@@ -9,6 +9,11 @@ var is_lit = true
 
 @onready var flicker_timer = Timer.new()
 @onready var light = self
+#sounds
+@onready var switch_light_audio: AudioStreamPlayer2D = $LightAudio/switch_light_audio
+@onready var uv_light_audio: AudioStreamPlayer2D = $LightAudio/uv_light_audio
+@onready var normal_light_audio: AudioStreamPlayer2D = $LightAudio/normal_light_audio
+
 
 signal uv_active
 
@@ -91,10 +96,21 @@ func cycle_light_color():
 	current_color_index = (current_color_index + 1) % light_colors.size()
 	self.color = light_colors[current_color_index]  
 
+	_play_switch_light_audio()
+
 	# If switching **back** to normal (white) mode, fuel burns again
 	if current_color_index == 0:
 		is_normal_mode = true
 		uv_active.emit(false)
+		_play_normal_light_audio()
 	else:
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
 		uv_active.emit(true)  # Emit the signal when the uv is active
+		_play_uv_light_audio()
+
+func _play_uv_light_audio():
+	uv_light_audio.play()
+func _play_normal_light_audio():
+	$LightAudio/normal_light_audio.play()
+func _play_switch_light_audio():
+	switch_light_audio.play()

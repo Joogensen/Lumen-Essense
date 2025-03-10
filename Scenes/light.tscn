@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://h37xcj1j61eg"]
+[gd_scene load_steps=10 format=3 uid="uid://h37xcj1j61eg"]
 
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="1_87je6"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="2_rphmf"]
@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://8ljvn23rl2t3" path="res://Audio/scary fridge noises.mp3" id="5_bjvy0"]
 
 [sub_resource type="Animation" id="Animation_ekl03"]
-resource_name = "lights"
+resource_name = "normal"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,9 +51,17 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_d1acu"]
+resource_name = "uv_light"
+
+[sub_resource type="Animation" id="Animation_2ncda"]
+resource_name = "switch"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1b5d0"]
 _data = {
-"lights": SubResource("Animation_ekl03")
+"normal": SubResource("Animation_ekl03"),
+"switch": SubResource("Animation_2ncda"),
+"uv_light": SubResource("Animation_d1acu")
 }
 
 [node name="PointLight2D" type="PointLight2D"]
