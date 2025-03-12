@@ -80,9 +80,9 @@ func turn_off_lantern():
 	light.visible = false
 	
 func _input(event):
-	if event.is_action_pressed("toggle_lantern") and current_fuel > 0:
-		is_lit = !is_lit
-		self.visible = is_lit
+	#if event.is_action_pressed("toggle_lantern") and current_fuel > 0:
+		#is_lit = !is_lit
+		#self.visible = is_lit
 
 	if event.is_action_pressed("change_light_color"):
 		cycle_light_color()

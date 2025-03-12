@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_gs8ou"]
 resource_name = "walk"
-length = 1.7
+length = 1.6
 loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -110,6 +110,7 @@ _data = {
 script = ExtResource("1_mtxti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_vgcfp")
 
@@ -125,6 +126,7 @@ libraries = {
 }
 
 [node name="SpriteParanoia" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(6, 6)
 texture = ExtResource("3_5vkk6")
