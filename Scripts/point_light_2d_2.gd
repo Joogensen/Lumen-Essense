@@ -10,10 +10,10 @@ var is_lit = true
 @onready var flicker_timer = Timer.new()
 @onready var light = self
 #sounds
+
 var switch_light_audio: AudioStreamPlayer2D
 var uv_light_audio: AudioStreamPlayer2D
 var normal_light_audio: AudioStreamPlayer2D
-
 
 
 signal uv_active
@@ -119,3 +119,5 @@ func _play_normal_light_audio():
 	normal_light_audio.play()
 func _play_switch_light_audio():
 	switch_light_audio.play()
+	uv_light_audio.stop()
+	normal_light_audio.stop()

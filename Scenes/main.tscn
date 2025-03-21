@@ -120,7 +120,6 @@ texture = ExtResource("4_a04uo")
 
 [node name="PointLight2D" parent="Player" node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("5_el1i5")]
 position = Vector2(-22.0001, 1.99997)
-scale = Vector2(1, 1)
 canvas_modulate_node = NodePath("../../CanvasModulate")
 
 [node name="Floor1" type="StaticBody2D" parent="." groups=["Platforms"]]

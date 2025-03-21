@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="2_rphmf"]
 [ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="3_c3l6f"]
 [ext_resource type="AudioStream" uid="uid://dcujgasubb0hk" path="res://Audio/uv_light_audio.wav" id="4_qasr1"]
-[ext_resource type="AudioStream" uid="uid://8ljvn23rl2t3" path="res://Audio/scary fridge noises.mp3" id="5_bjvy0"]
+[ext_resource type="AudioStream" uid="uid://3oc4rckx6t7c" path="res://Audio/switch_audio.mp3" id="5_5wdo3"]
 
 [sub_resource type="Animation" id="Animation_ekl03"]
 resource_name = "normal"
@@ -90,4 +90,5 @@ stream = ExtResource("3_c3l6f")
 stream = ExtResource("4_qasr1")
 
 [node name="switch_light_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_bjvy0")
+stream = ExtResource("5_5wdo3")
+volume_db = -15.928
