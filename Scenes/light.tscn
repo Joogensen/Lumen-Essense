@@ -51,11 +51,11 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_d1acu"]
-resource_name = "uv_light"
-
 [sub_resource type="Animation" id="Animation_2ncda"]
 resource_name = "switch"
+
+[sub_resource type="Animation" id="Animation_d1acu"]
+resource_name = "uv_light"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1b5d0"]
 _data = {
@@ -78,18 +78,16 @@ texture = ExtResource("1_87je6")
 script = ExtResource("2_rphmf")
 current_fuel = 50.0
 
-[node name="LightAudio" type="Node2D" parent="."]
-
-[node name="normal_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
-stream = ExtResource("3_c3l6f")
-
-[node name="uv_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
-stream = ExtResource("4_qasr1")
-
-[node name="switch_light_audio" type="AudioStreamPlayer2D" parent="LightAudio"]
-stream = ExtResource("5_bjvy0")
-
 [node name="LightsAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1b5d0")
 }
+
+[node name="normal_light_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_c3l6f")
+
+[node name="uv_light_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qasr1")
+
+[node name="switch_light_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bjvy0")

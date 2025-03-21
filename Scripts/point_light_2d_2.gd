@@ -10,9 +10,10 @@ var is_lit = true
 @onready var flicker_timer = Timer.new()
 @onready var light = self
 #sounds
-@onready var switch_light_audio: AudioStreamPlayer2D = $LightAudio/switch_light_audio
-@onready var uv_light_audio: AudioStreamPlayer2D = $LightAudio/uv_light_audio
-@onready var normal_light_audio: AudioStreamPlayer2D = $LightAudio/normal_light_audio
+var switch_light_audio: AudioStreamPlayer2D
+var uv_light_audio: AudioStreamPlayer2D
+var normal_light_audio: AudioStreamPlayer2D
+
 
 
 signal uv_active
@@ -34,6 +35,10 @@ func _ready():
 	add_child(flicker_timer)  
 	
 	self.color = light_colors[current_color_index] 
+	
+	switch_light_audio = get_node("switch_light_audio")
+	uv_light_audio = get_node("uv_light_audio")
+	normal_light_audio = get_node("normal_light_audio")
 
 func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
@@ -111,6 +116,6 @@ func cycle_light_color():
 func _play_uv_light_audio():
 	uv_light_audio.play()
 func _play_normal_light_audio():
-	$LightAudio/normal_light_audio.play()
+	normal_light_audio.play()
 func _play_switch_light_audio():
 	switch_light_audio.play()
