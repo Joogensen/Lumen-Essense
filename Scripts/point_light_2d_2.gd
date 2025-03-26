@@ -1,5 +1,4 @@
 extends PointLight2D
-
 var max_fuel = 100.0
 @export var current_fuel = 100.0
 var fuel_burn_rate = 1.0
@@ -11,9 +10,9 @@ var is_lit = true
 @onready var light = self
 #sounds
 
-var switch_light_audio: AudioStreamPlayer2D
-var uv_light_audio: AudioStreamPlayer2D
-var normal_light_audio: AudioStreamPlayer2D
+@onready var switch_light_audio: AudioStreamPlayer2D = $switch_light_audio
+@onready var uv_light_audio: AudioStreamPlayer2D = $uv_light_audio
+@onready var normal_light_audio: AudioStreamPlayer2D = $normal_light_audio
 @onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
 
 
@@ -37,10 +36,6 @@ func _ready():
 	add_child(flicker_timer)  
 	
 	self.color = light_colors[current_color_index] 
-	
-	switch_light_audio = get_node("switch_light_audio")
-	uv_light_audio = get_node("uv_light_audio")
-	normal_light_audio = get_node("normal_light_audio")
 
 func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
@@ -125,3 +120,4 @@ func _play_switch_light_audio():
 	switch_light_audio.play()
 	uv_light_audio.stop()
 	normal_light_audio.stop()
+	heartbeat.stop()

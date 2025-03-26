@@ -204,6 +204,7 @@ libraries = {
 
 [node name="normal_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("7_wj515")
+autoplay = true
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("8_jmcfj")
