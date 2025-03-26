@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=14 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
 [ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
+[ext_resource type="AudioStream" uid="uid://3o3h1kmejy17" path="res://Audio/heartbeat-deep.mp3" id="4_yp1gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
@@ -139,3 +140,8 @@ libraries = {
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 attenuation = 1.7411
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("4_yp1gy")
+volume_db = 12.18
+pitch_scale = 1.36

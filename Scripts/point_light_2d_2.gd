@@ -14,6 +14,8 @@ var is_lit = true
 var switch_light_audio: AudioStreamPlayer2D
 var uv_light_audio: AudioStreamPlayer2D
 var normal_light_audio: AudioStreamPlayer2D
+@onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
+
 
 
 signal uv_active
@@ -112,9 +114,11 @@ func cycle_light_color():
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
 		uv_active.emit(true)  # Emit the signal when the uv is active
 		_play_uv_light_audio()
+		#Player._play_paranoia_audio() #calls player function to play paranoia
 
 func _play_uv_light_audio():
 	uv_light_audio.play()
+	heartbeat.play() #placeholder, need to get autoload to access player files.
 func _play_normal_light_audio():
 	normal_light_audio.play()
 func _play_switch_light_audio():

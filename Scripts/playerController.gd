@@ -16,10 +16,11 @@ var paranoia_roi = 1.0
 var is_dead = false
 
 @onready var walk_animation_player: AnimationPlayer = $WalkAnimationPlayer
-@onready var light = $PointLight2D
+@onready var light: PointLight2D = $PointLight2D
 @onready var paranoia_sprite = $SpriteParanoia
 @onready var animated_sprite = $ParanoiaAnimationPlayer
 @onready var footstep: AudioStreamPlayer2D = $PlayerAudios/Footstep
+@onready var heartbeat: AudioStreamPlayer2D = $PlayerAudios/Heartbeat
 
 
 const PUSH_FORCE = 18.0
@@ -100,7 +101,10 @@ func _physics_process(delta: float) -> void:
 			$Arrow.visible = false
 
 
-
+func _play_paranoia_audio():
+	var pitch= (paranoia +1) * 2 # set pitch to be dependent on paranoia needs adjustment, might need multiple different audios
+	heartbeat.pitch_scale = pitch
+	heartbeat.play()
 func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(.8,1.2)
 	footstep.play()
