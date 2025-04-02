@@ -1,9 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=19 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
 [ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
-[ext_resource type="AudioStream" uid="uid://3o3h1kmejy17" path="res://Audio/heartbeat-deep.mp3" id="4_yp1gy"]
+[ext_resource type="AudioStream" uid="uid://njtdltalmv2w" path="res://Audio/concrete_sample_5.wav" id="4_d4nvg"]
+[ext_resource type="AudioStream" uid="uid://dj1g4o53hd3oj" path="res://Audio/heartbeat1.mp3" id="4_x2loa"]
+[ext_resource type="AudioStream" uid="uid://blhe25v7502kk" path="res://Audio/heartbeat2.mp3" id="5_34d73"]
+[ext_resource type="AudioStream" uid="uid://1r8fro7r6112" path="res://Audio/heartbeat3.mp3" id="6_at818"]
+[ext_resource type="AudioStream" uid="uid://b2vmykedvlom8" path="res://Audio/heartbeat4.mp3" id="7_edsl5"]
+[ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
@@ -139,9 +144,25 @@ libraries = {
 [node name="PlayerAudios" type="Node2D" parent="."]
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("4_d4nvg")
 attenuation = 1.7411
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
-stream = ExtResource("4_yp1gy")
-volume_db = 12.18
-pitch_scale = 1.36
+stream = ExtResource("4_x2loa")
+volume_db = 1.0
+
+[node name="Heartbeat2" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("5_34d73")
+volume_db = 1.0
+
+[node name="Heartbeat3" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("6_at818")
+volume_db = 1.0
+
+[node name="Heartbeat4" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("7_edsl5")
+volume_db = 1.0
+
+[node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("8_30320")
+volume_db = 1.0

@@ -113,7 +113,6 @@ func cycle_light_color():
 
 func _play_uv_light_audio():
 	uv_light_audio.play()
-	heartbeat.play() #placeholder, need to get autoload to access player files.
 func _play_normal_light_audio():
 	normal_light_audio.play()
 func _play_switch_light_audio():
