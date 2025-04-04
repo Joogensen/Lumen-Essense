@@ -25,6 +25,7 @@ var is_dead = false
 @onready var heartbeat_3: AudioStreamPlayer2D = $PlayerAudios/Heartbeat3
 @onready var heartbeat_4: AudioStreamPlayer2D = $PlayerAudios/Heartbeat4
 @onready var dead_audio: AudioStreamPlayer2D = $PlayerAudios/DeadAudio
+@onready var pickup_audio: AudioStreamPlayer2D = $PlayerAudios/PickupAudio
 
 
 
@@ -97,6 +98,7 @@ func _process(delta):
 
 func _on_fuel_collected():
 	light.refuel(50)
+	pickup_audio.play()
 
 func _physics_process(delta: float) -> void:
 	if !can_move: return

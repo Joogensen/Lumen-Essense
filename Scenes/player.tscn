@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=20 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://1r8fro7r6112" path="res://Audio/heartbeat3.mp3" id="6_at818"]
 [ext_resource type="AudioStream" uid="uid://b2vmykedvlom8" path="res://Audio/heartbeat4.mp3" id="7_edsl5"]
 [ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
+[ext_resource type="AudioStream" uid="uid://cxtg70pie8skw" path="res://Audio/pickup sound.mp3" id="10_u8thx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
@@ -166,3 +167,7 @@ volume_db = 1.0
 [node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("8_30320")
 volume_db = 1.0
+
+[node name="PickupAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("10_u8thx")
+volume_db = 1.874
