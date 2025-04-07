@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
 [ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
-[ext_resource type="AudioStream" uid="uid://njtdltalmv2w" path="res://Audio/concrete_sample_5.wav" id="4_d4nvg"]
+[ext_resource type="AudioStream" uid="uid://b0djodwr74nb8" path="res://Audio/footstep_fast_single.wav" id="4_g365e"]
 [ext_resource type="AudioStream" uid="uid://dj1g4o53hd3oj" path="res://Audio/heartbeat1.mp3" id="4_x2loa"]
 [ext_resource type="AudioStream" uid="uid://blhe25v7502kk" path="res://Audio/heartbeat2.mp3" id="5_34d73"]
 [ext_resource type="AudioStream" uid="uid://1r8fro7r6112" path="res://Audio/heartbeat3.mp3" id="6_at818"]
@@ -45,9 +45,21 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0075, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
 "args": [],
 "method": &"_play_footstep_audio"
 }]
@@ -147,7 +159,7 @@ libraries = {
 [node name="PlayerAudios" type="Node2D" parent="."]
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
-stream = ExtResource("4_d4nvg")
+stream = ExtResource("4_g365e")
 attenuation = 1.7411
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
@@ -168,7 +180,7 @@ volume_db = 1.0
 
 [node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("8_30320")
-volume_db = 1.0
+volume_db = -21.486
 
 [node name="PickupAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("10_u8thx")
