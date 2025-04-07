@@ -1,5 +1,4 @@
 extends PointLight2D
-
 var max_fuel = 100.0
 @export var current_fuel = 100.0
 var fuel_burn_rate = 1.0
@@ -9,6 +8,14 @@ var is_lit = true
 
 @onready var flicker_timer = Timer.new()
 @onready var light = self
+#sounds
+
+@onready var switch_light_audio: AudioStreamPlayer2D = $switch_light_audio
+@onready var uv_light_audio: AudioStreamPlayer2D = $uv_light_audio
+@onready var normal_light_audio: AudioStreamPlayer2D = $normal_light_audio
+@onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
+
+
 
 signal uv_active
 
@@ -91,10 +98,25 @@ func cycle_light_color():
 	current_color_index = (current_color_index + 1) % light_colors.size()
 	self.color = light_colors[current_color_index]  
 
+	_play_switch_light_audio()
+
 	# If switching **back** to normal (white) mode, fuel burns again
 	if current_color_index == 0:
 		is_normal_mode = true
 		uv_active.emit(false)
+		_play_normal_light_audio()
 	else:
 		is_normal_mode = false  # If it's a colored light, stop fuel burning
 		uv_active.emit(true)  # Emit the signal when the uv is active
+		_play_uv_light_audio()
+		#Player._play_paranoia_audio() #calls player function to play paranoia
+
+func _play_uv_light_audio():
+	uv_light_audio.play()
+func _play_normal_light_audio():
+	normal_light_audio.play()
+func _play_switch_light_audio():
+	switch_light_audio.play()
+	uv_light_audio.stop()
+	normal_light_audio.stop()
+	heartbeat.stop()

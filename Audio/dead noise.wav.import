@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmbagi3y4o3tm"
+path="res://.godot/imported/dead noise.wav-614ef55861895c306e5e3701dbfbb15b.sample"
+
+[deps]
+
+source_file="res://Audio/dead noise.wav"
+dest_files=["res://.godot/imported/dead noise.wav-614ef55861895c306e5e3701dbfbb15b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
