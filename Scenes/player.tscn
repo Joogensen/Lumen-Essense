@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://1r8fro7r6112" path="res://Audio/heartbeat3.mp3" id="6_at818"]
 [ext_resource type="AudioStream" uid="uid://b2vmykedvlom8" path="res://Audio/heartbeat4.mp3" id="7_edsl5"]
 [ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
-[ext_resource type="AudioStream" uid="uid://cxtg70pie8skw" path="res://Audio/pickup sound.mp3" id="10_u8thx"]
+[ext_resource type="AudioStream" uid="uid://db6q1bsjxu5bk" path="res://Audio/pickup_Low.wav" id="10_eg8rq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
@@ -183,5 +183,5 @@ stream = ExtResource("8_30320")
 volume_db = -21.486
 
 [node name="PickupAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
-stream = ExtResource("10_u8thx")
+stream = ExtResource("10_eg8rq")
 volume_db = 1.874

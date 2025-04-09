@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=23 format=4 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://3o3h1kmejy17" path="res://Audio/heartbeat-deep.mp3" id="10_m6rai"]
 [ext_resource type="Texture2D" uid="uid://ck815alpf0cdq" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/level_tileset.png" id="11_xccnf"]
 [ext_resource type="PackedScene" uid="uid://b0kvtlx4ugufk" path="res://Scenes/uv_platform.tscn" id="15_o10mp"]
+[ext_resource type="AudioStream" uid="uid://c1sa2ye4vpw06" path="res://Audio/eerie-ambient-10-205803.mp3" id="15_oyisi"]
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
 
@@ -441,7 +442,8 @@ flip_v = true
 position = Vector2(2298, 931)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-volume_db = -20.0
+stream = ExtResource("15_oyisi")
+volume_db = -16.0
 autoplay = true
 
 [node name="UVPlatform" parent="." instance=ExtResource("15_o10mp")]
