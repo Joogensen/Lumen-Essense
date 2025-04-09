@@ -86,6 +86,8 @@ libraries = {
 
 [node name="normal_light_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_c3l6f")
+volume_db = 24.0
+autoplay = true
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_qasr1")
