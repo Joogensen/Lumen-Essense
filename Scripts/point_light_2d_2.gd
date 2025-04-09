@@ -36,6 +36,7 @@ func _ready():
 	add_child(flicker_timer)  
 	
 	self.color = light_colors[current_color_index] 
+	_play_normal_light_audio()
 
 func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
