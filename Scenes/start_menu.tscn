@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://deelg2wyacg87"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_y64wy"]
+[ext_resource type="FontFile" uid="uid://bsiocxlxhflph" path="res://Sprites/Bernhard Modern Bold BT.ttf" id="2_15075"]
+[ext_resource type="Texture2D" uid="uid://bphc0uadtfetj" path="res://Sprites/Lumen Essence(2).png" id="3_ioy5w"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y64wy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -30.0
+offset_right = 34.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.68, 1.76)
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_15075")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Start"
+flat = true
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_15075")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Settings"
+flat = true
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_15075")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Exit"
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.288
+anchor_right = 0.499
+anchor_bottom = 0.288
+offset_left = -185.848
+offset_top = -75.624
+offset_right = 34.152
+offset_bottom = 25.376
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.68, 1.76)
+
+[node name="LumenEssence(2)" type="Sprite2D" parent="VBoxContainer2"]
+position = Vector2(116.071, 160.795)
+scale = Vector2(0.445188, 0.436132)
+texture = ExtResource("3_ioy5w")
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

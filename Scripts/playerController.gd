@@ -26,6 +26,8 @@ var is_dead = false
 @onready var heartbeat_4: AudioStreamPlayer2D = $PlayerAudios/Heartbeat4
 @onready var dead_audio: AudioStreamPlayer2D = $PlayerAudios/DeadAudio
 @onready var pickup_audio: AudioStreamPlayer2D = $PlayerAudios/PickupAudio
+@onready var death_screen: CanvasLayer = $DeathScreen
+@onready var pause_menu: Control = $CanvasLayer/PauseMenu
 
 
 
@@ -38,6 +40,7 @@ var gate1 = true
 var gate2 = true
 var gate3 = true
 var gate4 = true
+
 
 func _ready():
 	for fuel in get_tree().get_nodes_in_group("lantern_fuel"):
@@ -63,7 +66,7 @@ func _process(delta):
 		
 	#some of the worst code ever written, resvise later, it does work...
 	#works by setting up gates so that it only calls once
-	if paranoia >= 5.0:
+	if paranoia >= 5.0 and !is_dead:
 		die()
 	if paranoia == 0:
 		checker = true
@@ -187,16 +190,18 @@ func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(.8,1.2)
 	footstep.play()
 func die():
+	is_dead = true
+	pause_menu.accepting_input = false
 	print("Player has died!")
 	_stop_heartbeats()
 	if not(dead_audio.playing):
 		dead_audio.play()
 	hide()
 	disable_input()
+	death_screen.start_animation()
 	await get_tree().create_timer(5.0).timeout  
 	get_tree().reload_current_scene()  
-	enable_input()
-	is_dead = true
+	#enable_input()
 	
 
 func disable_input():

@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjamfea32yo4"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_pmxs8"]
+[ext_resource type="Shader" path="res://Scripts/pause_menu.gdshader" id="2_q5gy1"]
+[ext_resource type="FontFile" uid="uid://bsiocxlxhflph" path="res://Sprites/Bernhard Modern Bold BT.ttf" id="3_c3qdi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jada"]
+shader = ExtResource("2_q5gy1")
+shader_parameter/lod = 0.815
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pmxs8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.533333)
+material = SubResource("ShaderMaterial_7jada")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.439216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.37
+anchor_right = 0.5
+anchor_bottom = 0.37
+offset_left = -362.0
+offset_top = -113.26
+offset_right = 70.0001
+offset_bottom = 101.74
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.68, 1.76)
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c3qdi")
+theme_override_font_sizes/font_size = 50
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c3qdi")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Resume"
+flat = true
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c3qdi")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Settings"
+flat = true
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c3qdi")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Restart"
+flat = true
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_c3qdi")
+theme_override_font_sizes/font_size = 25
+action_mode = 0
+text = "Exit"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
