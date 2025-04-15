@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="LumenEssence"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+GameState="*res://Scripts/GameState.gd"
 
 [editor_plugins]
 

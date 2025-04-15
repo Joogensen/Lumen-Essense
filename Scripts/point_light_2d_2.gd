@@ -4,6 +4,7 @@ var max_fuel = 100.0
 var fuel_burn_rate = 1.0
 var is_lit = true
 
+
 @export var canvas_modulate_node: CanvasModulate  # Reference to main light modulate
 
 @onready var flicker_timer = Timer.new()
@@ -13,8 +14,6 @@ var is_lit = true
 @onready var switch_light_audio: AudioStreamPlayer2D = $switch_light_audio
 @onready var uv_light_audio: AudioStreamPlayer2D = $uv_light_audio
 @onready var normal_light_audio: AudioStreamPlayer2D = $normal_light_audio
-@onready var heartbeat: AudioStreamPlayer2D = $Heartbeat
-
 
 
 signal uv_active
@@ -34,9 +33,12 @@ func _ready():
 	flicker_timer.wait_time = 0.1
 	flicker_timer.connect("timeout", Callable(self, "_on_FlickerTimer_timeout"))
 	add_child(flicker_timer)  
-	
-	self.color = light_colors[current_color_index] 
-	_play_normal_light_audio()
+
+	self.color = light_colors[current_color_index]
+		
+	if !GameState.is_player_dead:
+		_play_normal_light_audio()
+
 
 func _on_battery_collected():
 	refuel(50)  # Increase fuel when a battery is collected
@@ -112,12 +114,20 @@ func cycle_light_color():
 		_play_uv_light_audio()
 		#Player._play_paranoia_audio() #calls player function to play paranoia
 
-func _play_uv_light_audio():
-	uv_light_audio.play()
+
 func _play_normal_light_audio():
+	if GameState.is_player_dead:
+		return
 	normal_light_audio.play()
+
+func _play_uv_light_audio():
+	if GameState.is_player_dead:
+		return
+	uv_light_audio.play()
+
 func _play_switch_light_audio():
+	if GameState.is_player_dead:
+		return
 	switch_light_audio.play()
 	uv_light_audio.stop()
 	normal_light_audio.stop()
-	heartbeat.stop()
