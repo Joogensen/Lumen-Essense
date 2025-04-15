@@ -820,7 +820,7 @@ shape = SubResource("RectangleShape2D_51v6i")
 texture = ExtResource("17_tftxh")
 
 [node name="Area2D" parent="." instance=ExtResource("17_xu3p2")]
-position = Vector2(3994, 1064)
+position = Vector2(3994, 1059)
 
 [node name="StaticBody2D18" type="StaticBody2D" parent="."]
 position = Vector2(3675, 835)

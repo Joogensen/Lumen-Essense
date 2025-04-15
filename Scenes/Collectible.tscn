@@ -260,5 +260,6 @@ shape = SubResource("CircleShape2D_odsou")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hcyrs")
 frame_progress = 0.137338
