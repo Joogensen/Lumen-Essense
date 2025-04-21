@@ -23,3 +23,4 @@ func _toggle_switch():
 	is_light_on = !is_light_on
 	canvas_modulate_node.visible = not is_light_on
 	$AnimatedSprite2D.play("LightSwitch")
+	$ClickSound.play()
