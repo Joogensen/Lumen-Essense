@@ -166,7 +166,7 @@ position = Vector2(4027, 419)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(3884, 1039)
+position = Vector2(112, 1013)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
