@@ -137,7 +137,7 @@ sources/0 = SubResource("TileSetAtlasSource_mjx0l")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b5lgk"]
 a = Vector2(128, -8)
-b = Vector2(-19, 6)
+b = Vector2(-122, -6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nneb2"]
 size = Vector2(30.25, 14.25)
