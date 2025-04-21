@@ -8,5 +8,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Player":  
-		collected.emit()  
-		queue_free()  
+		collected.emit()
+		$AudioStreamPlayer2D.play()
+		await $AudioStreamPlayer2D.finished
+		queue_free()
