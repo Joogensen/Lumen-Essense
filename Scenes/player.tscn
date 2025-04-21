@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=23 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="PackedScene" uid="uid://btubgff84ncha" path="res://Scenes/death_screen.tscn" id="2_3b2kq"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://b2vmykedvlom8" path="res://Audio/heartbeat4.mp3" id="7_edsl5"]
 [ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
 [ext_resource type="AudioStream" uid="uid://db6q1bsjxu5bk" path="res://Audio/pickup_Low.wav" id="10_eg8rq"]
+[ext_resource type="AudioStream" uid="uid://d1k05ex2t51mc" path="res://Audio/whispersghostvoicemix-202342.mp3" id="12_7ua1i"]
 [ext_resource type="PackedScene" uid="uid://cjamfea32yo4" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
@@ -190,6 +191,10 @@ volume_db = -21.486
 [node name="PickupAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("10_eg8rq")
 volume_db = 1.874
+
+[node name="Whispers" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("12_7ua1i")
+volume_db = -50.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

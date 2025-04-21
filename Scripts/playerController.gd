@@ -24,6 +24,8 @@ var is_dead = false
 @onready var pickup_audio: AudioStreamPlayer2D = $PlayerAudios/PickupAudio
 @onready var death_screen: CanvasLayer = $DeathScreen
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var whispers_audio: AudioStreamPlayer2D = $PlayerAudios/Whispers
+
 
 const PUSH_FORCE = 18.0
 const MIN_PUSH_FORCE = 10.0
@@ -34,6 +36,10 @@ var base_heartbeat_pitch = 1.0
 var max_heartbeat_pitch = 1.8
 var base_heartbeat_volume_db = -30.0
 var max_heartbeat_volume_db = -6.0
+
+var base_whisper_volume_db = -40.0  # fully silent
+var max_whisper_volume_db = -8.0    # loud at full paranoia
+
 
 func _ready():
 	paranoia = 0
@@ -123,6 +129,13 @@ func update_heartbeat_audio():
 	if paranoia > 0:
 		if !heartbeat.playing:
 			heartbeat.play()
+		if !whispers_audio.playing:
+			whispers_audio.play()
+
+# Fade volume based on paranoia level (0 to 5)
+		var whisper_volume = lerp(base_whisper_volume_db, max_whisper_volume_db, paranoia / 5.0)
+		whispers_audio.volume_db = whisper_volume
+
 
 		var pitch = lerp(base_heartbeat_pitch, max_heartbeat_pitch, paranoia / 5.0)
 		heartbeat.pitch_scale = pitch
@@ -132,6 +145,9 @@ func update_heartbeat_audio():
 	else:
 		if heartbeat.playing:
 			heartbeat.stop()
+		if whispers_audio.playing:
+			whispers_audio.stop()
+
 
 func update_paranoia_animation(delta):
 	if paranoia == 0:
