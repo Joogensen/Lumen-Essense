@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpnhj4ma24ipv"]
+[gd_scene load_steps=24 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
 [ext_resource type="PackedScene" uid="uid://btubgff84ncha" path="res://Scenes/death_screen.tscn" id="2_3b2kq"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://db6q1bsjxu5bk" path="res://Audio/pickup_Low.wav" id="10_eg8rq"]
 [ext_resource type="AudioStream" uid="uid://d1k05ex2t51mc" path="res://Audio/whispersghostvoicemix-202342.mp3" id="12_7ua1i"]
 [ext_resource type="PackedScene" uid="uid://cjamfea32yo4" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
+[ext_resource type="AudioStream" uid="uid://bdmd7cx6xw7ja" path="res://Audio/landing_From_Fall.mp3" id="13_mjsgd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
@@ -194,7 +195,11 @@ volume_db = 1.874
 
 [node name="Whispers" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("12_7ua1i")
-volume_db = -50.0
+volume_db = -40.0
+
+[node name="Landing" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("13_mjsgd")
+volume_db = -20.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

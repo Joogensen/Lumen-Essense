@@ -25,11 +25,14 @@ var is_dead = false
 @onready var death_screen: CanvasLayer = $DeathScreen
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var whispers_audio: AudioStreamPlayer2D = $PlayerAudios/Whispers
+@onready var land_audio: AudioStreamPlayer2D = $PlayerAudios/Landing
+
 
 
 const PUSH_FORCE = 18.0
 const MIN_PUSH_FORCE = 10.0
 var was_paranoia_zero = true  
+var was_on_floor = false
 
 # Heartbeat scaling parameters
 var base_heartbeat_pitch = 1.0
@@ -116,6 +119,16 @@ func _physics_process(delta: float) -> void:
 			$Arrow.visible = false
 		else:
 			$Arrow.visible = true
+			
+	# Detect landing
+	if is_on_floor() and !was_on_floor:
+		land_audio.pitch_scale = randf_range(0.9, 1.1)
+		land_audio.play()
+
+	# Update for next frame
+	was_on_floor = is_on_floor()
+
+
 
 func paranoia_check(delta):
 	if is_dead or not light.visible: return
