@@ -37,9 +37,8 @@ var was_on_floor = false
 # Heartbeat scaling parameters
 var base_heartbeat_pitch = 1.0
 var max_heartbeat_pitch = 1.8
-var base_heartbeat_volume_db = -30.0
-var max_heartbeat_volume_db = -6.0
-
+var base_heartbeat_volume_db = -10.0
+var max_heartbeat_volume_db = 8.0
 var base_whisper_volume_db = -40.0  # fully silent
 var max_whisper_volume_db = -8.0    # loud at full paranoia
 

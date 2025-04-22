@@ -10,13 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="7_wj515"]
 [ext_resource type="AudioStream" uid="uid://dcujgasubb0hk" path="res://Audio/uv_light_audio.wav" id="8_jmcfj"]
 [ext_resource type="AudioStream" uid="uid://3oc4rckx6t7c" path="res://Audio/switch_audio.mp3" id="9_sig01"]
-[ext_resource type="PackedScene" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
+[ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
 [ext_resource type="Texture2D" uid="uid://ck815alpf0cdq" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/level_tileset.png" id="11_xccnf"]
-[ext_resource type="PackedScene" path="res://Scenes/uv_platform.tscn" id="15_o10mp"]
+[ext_resource type="PackedScene" uid="uid://b0kvtlx4ugufk" path="res://Scenes/uv_platform.tscn" id="15_o10mp"]
 [ext_resource type="AudioStream" uid="uid://c1sa2ye4vpw06" path="res://Audio/eerie-ambient-10-205803.mp3" id="15_oyisi"]
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
-[ext_resource type="PackedScene" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
+[ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
