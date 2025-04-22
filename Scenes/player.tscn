@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
-[ext_resource type="PackedScene" uid="uid://btubgff84ncha" path="res://Scenes/death_screen.tscn" id="2_3b2kq"]
+[ext_resource type="PackedScene" path="res://Scenes/death_screen.tscn" id="2_3b2kq"]
 [ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
 [ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
 [ext_resource type="AudioStream" uid="uid://b0djodwr74nb8" path="res://Audio/footstep_fast_single.wav" id="4_g365e"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
 [ext_resource type="AudioStream" uid="uid://db6q1bsjxu5bk" path="res://Audio/pickup_Low.wav" id="10_eg8rq"]
 [ext_resource type="AudioStream" uid="uid://d1k05ex2t51mc" path="res://Audio/whispersghostvoicemix-202342.mp3" id="12_7ua1i"]
-[ext_resource type="PackedScene" uid="uid://cjamfea32yo4" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
+[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
 [ext_resource type="AudioStream" uid="uid://bdmd7cx6xw7ja" path="res://Audio/landing_From_Fall.mp3" id="13_mjsgd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]

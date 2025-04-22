@@ -9,6 +9,8 @@ func _ready():
 	# Ensure the UV node exists and has the signal before connecting
 	if uv and uv.has_signal("uv_active"):
 		uv.uv_active.connect(_on_uv_activated)  # Connect the signal
+		
+		sprite2D.modulate = Color(0.0, 0.7, 1.0, 1.0) # makes UV blocks blue
 
 	# Start invisible and disabled
 	sprite2D.visible = false
