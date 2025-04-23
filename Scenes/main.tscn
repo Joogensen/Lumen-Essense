@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=24 format=4 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
 [ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
+[ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -166,7 +167,7 @@ position = Vector2(4027, 419)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(208, 1036)
+position = Vector2(76, 1040)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
@@ -1104,3 +1105,8 @@ shape = SubResource("RectangleShape2D_51v6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D27"]
 texture = ExtResource("17_tftxh")
+
+[node name="DialogTrigger" parent="StaticBody2D27" instance=ExtResource("18_d2yf0")]
+
+[node name="DialogTrigger" parent="." instance=ExtResource("18_d2yf0")]
+position = Vector2(187, 1005)
