@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://x6xqughakap8"]
+
+[ext_resource type="Script" path="res://Scripts/settings.gd" id="1_pkbe0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_offro"]
+
+[sub_resource type="GDScript" id="GDScript_f3nuk"]
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_pkbe0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.288
+anchor_right = 0.499
+anchor_bottom = 0.288
+offset_left = -185.848
+offset_top = -75.624
+offset_right = 34.152
+offset_bottom = 25.376
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.68, 1.76)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_right = 1150.0
+offset_bottom = 650.0
+texture = SubResource("CanvasTexture_offro")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+top_level = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+current_tab = 0
+
+[node name="Audio" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 615.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_f3nuk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Master_vol_label" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Master Volume Control"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="music_vol_label" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="sfx_vol_label" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Sound Effects Volume
+"
