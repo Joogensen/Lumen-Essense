@@ -58,6 +58,16 @@ func _ready():
 	var uv = get_tree().root.get_node("Main/Player/PointLight2D")
 	if uv and uv.has_signal("uv_active"):
 		uv.uv_active.connect(_on_PointLight2D_uv_active)
+	
+	if GameState.last_checkpoint_position != Vector2.ZERO:
+		global_position = GameState.last_checkpoint_position
+
+		var cam := $Camera2D
+		cam.position_smoothing_enabled = false
+		cam.global_position = global_position  # Snap immediately
+
+		await get_tree().create_timer(0.1).timeout
+		cam.position_smoothing_enabled = true
 
 func _process(delta):
 	if is_dead: return
