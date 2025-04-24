@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://bvirfstbyboga"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_xsnio"]
+
+[resource]
+script = ExtResource("1_xsnio")
+lines = [{
+"speaker": "Player",
+"text": "Nice! A fuel canister!"
+}, {
+"speaker": "Player",
+"text": "I can use this to refuel the lantern."
+}, {
+"speaker": "Lantern",
+"text": "I suggest you keep me running."
+}]

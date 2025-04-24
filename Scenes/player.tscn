@@ -208,14 +208,14 @@ volume_db = -20.0
 visible = false
 
 [node name="PlayerTextBoxWrapper" type="Node2D" parent="."]
-position = Vector2(25, 2)
+position = Vector2(9, -31)
 metadata/_edit_group_ = true
 
 [node name="PlayerTextBox" parent="PlayerTextBoxWrapper" instance=ExtResource("15_rfo1m")]
 visible = false
 
 [node name="LanternTextBoxWrapper" type="Node2D" parent="."]
-position = Vector2(43, 29)
+position = Vector2(23, -12)
 metadata/_edit_group_ = true
 
 [node name="LanternTextBox" parent="LanternTextBoxWrapper" instance=ExtResource("15_rfo1m")]

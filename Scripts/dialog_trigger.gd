@@ -1,14 +1,17 @@
 extends Area2D
 
+@export var dialog_data: DialogData  # this should be set in the Inspector
+
 var has_triggered = false
 
 func _on_body_entered(body):
 	if has_triggered or body.name != "Player":
 		return
 
-	has_triggered = true
+	if dialog_data == null:
+		push_error("DialogTrigger: dialog_data not assigned!")
+		return
 
-	DialogManager.start_dialog(body.global_position, [
-		{"speaker": "Lantern", "text": "Go slow. Something’s off here..."},
-		{"speaker": "Player", "text": "You're... talking?"}
-	])
+	has_triggered = true
+	var dialog_position = body.global_position + Vector2(0, -100)
+	DialogManager.start_dialog(dialog_position, dialog_data.lines)

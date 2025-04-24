@@ -13,6 +13,8 @@ var can_move = true
 var paranoia = 0.1
 var paranoia_roi = 1.0
 var is_dead = false
+var can_burn_fuel = true
+
 
 @onready var walk_animation_player: AnimationPlayer = $WalkAnimationPlayer
 @onready var light: PointLight2D = $PointLight2D
@@ -130,12 +132,14 @@ func _physics_process(delta: float) -> void:
 
 
 func paranoia_check(delta):
-	if is_dead or not light.visible: return
+	if is_dead or not light.visible or not can_burn_fuel:
+		return
 
 	if $PointLight2D.is_lit and $PointLight2D.is_normal_mode:
 		paranoia = max(0, paranoia - paranoia_roi * delta)
 	else:
 		paranoia = min(5, paranoia + paranoia_roi * delta)
+
 
 func update_heartbeat_audio():
 	if paranoia > 0:
@@ -233,3 +237,13 @@ func stop_all_sfx_except_death():
 		footstep.stop()
 	if pickup_audio.playing:
 		pickup_audio.stop()
+
+func set_dialog_mode(active: bool):
+	can_move = not active
+	can_burn_fuel = not active
+	walk_animation_player.stop()
+
+	if active:
+		print("Dialog mode: ON")
+	else:
+		print("Dialog mode: OFF")

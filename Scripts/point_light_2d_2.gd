@@ -53,20 +53,26 @@ func refuel(amount):
 
 func _process(delta):
 	if not canvas_modulate_node:
-		print("ERROR: CanvasModulate reference missing!")
+		print("❌ CanvasModulate is missing!")
 		return
-	
-	# Corrected logic: Check if the light is ON (CanvasModulate is OFF)
+
+	if GameState.is_in_dialog:
+		print("🛑 Skipping fuel burn due to dialog")
+		return
+
 	var is_light_on = not canvas_modulate_node.visible
+	print("CanvasModulate.visible =", canvas_modulate_node.visible)
+	print("is_light_on =", is_light_on)
 
 	if is_light_on:
-		print("CanvasModulate is OFF. Pausing fuel consumption.")
-		return  # Stop processing fuel burn
+		print("🌞 World is lit — skipping fuel burn")
+		return
 
-	# If lights are OFF, fuel burns normally
 	if is_lit and is_normal_mode:
+		print("🔥 Fuel Level:", round(current_fuel), "/", max_fuel)
 		consume_fuel(delta)
-		print("Fuel Level: ", current_fuel)
+	else:
+		print("🚫 Not lit or not in normal mode — no fuel burn")
 
 
 func consume_fuel(delta):

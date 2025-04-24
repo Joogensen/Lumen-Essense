@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=29 format=4 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
@@ -18,6 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
 [ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
 [ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
+[ext_resource type="Resource" uid="uid://c7cqssbk02aul" path="res://Scripts/Dialog/introDialog.tres" id="19_2rjdk"]
+[ext_resource type="Resource" uid="uid://bdeiackm8sxqc" path="res://Scripts/Dialog/tutorialJump.tres" id="20_xij6e"]
+[ext_resource type="Resource" uid="uid://5c57ate43uh0" path="res://Scripts/Dialog/UVTutorial.tres" id="21_pdm7w"]
+[ext_resource type="Resource" uid="uid://bmeceqsrjh60n" path="res://Scripts/Dialog/CollectibleDialog.tres" id="22_0hoib"]
+[ext_resource type="Resource" uid="uid://bvirfstbyboga" path="res://Scripts/Dialog/FuelDialog.tres" id="22_qrn8i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -166,8 +171,17 @@ color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 position = Vector2(4027, 419)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
+[node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
+position = Vector2(2358, 945)
+
+[node name="Collectible1" parent="." instance=ExtResource("17_xu3p2")]
+position = Vector2(3994, 1059)
+
+[node name="Collectible2" parent="." instance=ExtResource("17_xu3p2")]
+position = Vector2(3031, 933)
+
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(76, 1040)
+position = Vector2(2145, 945)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
@@ -509,9 +523,6 @@ position = Vector2(466, 625)
 scale = Vector2(1.19231, 1.1875)
 texture = ExtResource("6_j5p50")
 flip_v = true
-
-[node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
-position = Vector2(2298, 931)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_oyisi")
@@ -1015,9 +1026,6 @@ shape = SubResource("RectangleShape2D_51v6i")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D20"]
 texture = ExtResource("17_tftxh")
 
-[node name="Area2D" parent="." instance=ExtResource("17_xu3p2")]
-position = Vector2(3994, 1059)
-
 [node name="StaticBody2D18" type="StaticBody2D" parent="."]
 position = Vector2(3675, 835)
 metadata/_edit_group_ = true
@@ -1109,4 +1117,21 @@ texture = ExtResource("17_tftxh")
 [node name="DialogTrigger" parent="StaticBody2D27" instance=ExtResource("18_d2yf0")]
 
 [node name="DialogTrigger" parent="." instance=ExtResource("18_d2yf0")]
-position = Vector2(187, 1005)
+position = Vector2(138, 1013)
+dialog_data = ExtResource("19_2rjdk")
+
+[node name="DialogTrigger2" parent="." instance=ExtResource("18_d2yf0")]
+position = Vector2(427, 1002)
+dialog_data = ExtResource("20_xij6e")
+
+[node name="DialogTrigger3" parent="." instance=ExtResource("18_d2yf0")]
+position = Vector2(1845, 902)
+dialog_data = ExtResource("21_pdm7w")
+
+[node name="DialogTrigger4" parent="." instance=ExtResource("18_d2yf0")]
+position = Vector2(2215, 916)
+dialog_data = ExtResource("22_qrn8i")
+
+[node name="DialogTrigger5" parent="." instance=ExtResource("18_d2yf0")]
+position = Vector2(2983, 909)
+dialog_data = ExtResource("22_0hoib")

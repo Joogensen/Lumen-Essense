@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://5c57ate43uh0"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_yi221"]
+
+[resource]
+script = ExtResource("1_yi221")
+lines = [{
+"speaker": "Player",
+"text": "This Jump is way too far!"
+}, {
+"speaker": "Lantern",
+"text": "you're in luck!"
+}, {
+"speaker": "Lantern",
+"text": "Press C to activate UV mode"
+}, {
+"speaker": "Player",
+"text": "But I'm scared of the dark!"
+}, {
+"speaker": "Lantern",
+"text": "Better not leave it on for too long then!"
+}]

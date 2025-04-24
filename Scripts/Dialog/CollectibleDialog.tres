@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://bmeceqsrjh60n"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_8wyxf"]
+
+[resource]
+script = ExtResource("1_8wyxf")
+lines = [{
+"speaker": "Player",
+"text": "What's That?"
+}, {
+"speaker": "lantern",
+"text": "That's a spirit orb,"
+}, {
+"speaker": "Lantern",
+"text": "You should try collect them for me!"
+}]
