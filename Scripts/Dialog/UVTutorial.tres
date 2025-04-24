@@ -14,6 +14,9 @@ lines = [{
 "speaker": "Lantern",
 "text": "Press C to activate UV mode"
 }, {
+"speaker": "Lantern",
+"text": "It guides you and uncovers hidden paths. "
+}, {
 "speaker": "Player",
 "text": "But I'm scared of the dark!"
 }, {
