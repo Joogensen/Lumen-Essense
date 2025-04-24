@@ -8,7 +8,7 @@ lines = [{
 "speaker": "Player",
 "text": "What's That?"
 }, {
-"speaker": "lantern",
+"speaker": "Lantern",
 "text": "That's a spirit orb,"
 }, {
 "speaker": "Lantern",
