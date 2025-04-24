@@ -607,30 +607,6 @@ stream = ExtResource("15_oyisi")
 volume_db = -16.0
 autoplay = true
 
-[node name="UVPlatform" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(79, 1151)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform"]
-position = Vector2(2010.88, 988.875)
-shape = SubResource("RectangleShape2D_nneb2")
-
-[node name="Sprite2D" type="Sprite2D" parent="UVPlatform"]
-position = Vector2(2011, 997)
-texture = ExtResource("16_nyvm5")
-
-[node name="UVPlatform6" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(110, 1151)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform6"]
-position = Vector2(2010.88, 988.875)
-shape = SubResource("RectangleShape2D_nneb2")
-
-[node name="Sprite2D" type="Sprite2D" parent="UVPlatform6"]
-position = Vector2(2011, 997)
-texture = ExtResource("16_nyvm5")
-
 [node name="UVPlatform2" parent="." instance=ExtResource("15_o10mp")]
 position = Vector2(3679, 1067)
 metadata/_edit_group_ = true
@@ -1179,7 +1155,7 @@ position = Vector2(542, 2071)
 dialog_data = ExtResource("20_xij6e")
 
 [node name="DialogTrigger3" parent="." instance=ExtResource("18_d2yf0")]
-position = Vector2(1926, 2069)
+position = Vector2(2481, 2059)
 dialog_data = ExtResource("21_pdm7w")
 
 [node name="DialogTrigger4" parent="." instance=ExtResource("18_d2yf0")]
@@ -1254,3 +1230,25 @@ shape = SubResource("RectangleShape2D_nneb2")
 [node name="Sprite2D" type="Sprite2D" parent="UVPlatform11"]
 position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
+
+[node name="StaticBody2D28" type="StaticBody2D" parent="."]
+position = Vector2(2126, 2150)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D28"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D28"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D29" type="StaticBody2D" parent="."]
+position = Vector2(2093, 2150)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D29"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D29"]
+texture = ExtResource("17_tftxh")

@@ -96,12 +96,14 @@ func turn_off_lantern():
 	light.visible = false
 	
 func _input(event):
-	#if event.is_action_pressed("toggle_lantern") and current_fuel > 0:
-		#is_lit = !is_lit
-		#self.visible = is_lit
+	# Prevent switching light modes during cutscenes/dialogue
+	if GameState.is_in_dialog:
+		return
 
+	# Toggle light color if not in dialog
 	if event.is_action_pressed("change_light_color"):
 		cycle_light_color()
+
 
 func cycle_light_color():
 	current_color_index = (current_color_index + 1) % light_colors.size()
@@ -137,3 +139,8 @@ func _play_switch_light_audio():
 	switch_light_audio.play()
 	uv_light_audio.stop()
 	normal_light_audio.stop()
+
+func fade_audio(audio: AudioStreamPlayer2D, target_db: float, duration: float):
+	if not audio: return
+	var tween = get_tree().create_tween()
+	tween.tween_property(audio, "volume_db", target_db, duration).set_trans(Tween.TRANS_SINE)

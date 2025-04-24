@@ -41,6 +41,30 @@ func start_dialog(position: Vector2, lines: Array):
 	text_box_position = position
 	_show_text_box()
 	is_dialog_active = true
+	
+	if player.paranoia > 0 or not player.light.is_normal_mode:
+		player.paranoia = 0
+
+		# Reset light visuals + mode
+		player.light.current_color_index = 0
+		player.light.color = player.light.light_colors[0]
+		player.light.is_normal_mode = true
+		player.light.uv_active.emit(false)
+
+		# Stop UV audio smoothly
+		if player.light.uv_light_audio.playing:
+			player.light.fade_audio(player.light.uv_light_audio, -80, 0.5)
+
+		# Fade in normal light audio (or unmute if already playing)
+		player.light.normal_light_audio.volume_db = -80  # start muted
+		player.light.normal_light_audio.play()
+		player.light.fade_audio(player.light.normal_light_audio, 0, 0.5)
+
+		# ✅ PLAY normal light audio again (gently)
+		player.light._play_normal_light_audio()
+
+
+
 
 func _show_text_box():
 	var current_line = dialog_lines[current_line_index]
