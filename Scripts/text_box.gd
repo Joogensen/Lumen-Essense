@@ -51,3 +51,10 @@ func _display_letter():
 
 func _on_letter_display_timer_timeout() -> void:
 	_display_letter()
+	
+func skip_to_end():
+	if label.text == text:
+		return  # Already done
+	timer.stop()
+	label.text = text
+	finished_displaying.emit()
