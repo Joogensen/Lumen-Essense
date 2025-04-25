@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://bvirfstbyboga" path="res://Scripts/Dialog/FuelDialog.tres" id="22_qrn8i"]
 [ext_resource type="Texture2D" uid="uid://bserlo3db0s18" path="res://Sprites/3.png" id="24_1e2jc"]
 [ext_resource type="PackedScene" uid="uid://biyemdjsj3fwu" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
+[ext_resource type="PackedScene" uid="uid://c0piiypvoypkh" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -201,6 +202,9 @@ limit_top = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="SimpleMap" parent="Player" instance=ExtResource("18_8lwm8")]
+visible = false
 
 [node name="Arrow" type="Sprite2D" parent="Player"]
 visible = false
