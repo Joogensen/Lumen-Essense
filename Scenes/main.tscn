@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
 [ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
-[ext_resource type="PackedScene" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
+[ext_resource type="PackedScene" uid="uid://c0piiypvoypkh" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
 [ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
 [ext_resource type="Resource" uid="uid://c7cqssbk02aul" path="res://Scripts/Dialog/introDialog.tres" id="19_2rjdk"]
 [ext_resource type="Resource" uid="uid://bdeiackm8sxqc" path="res://Scripts/Dialog/tutorialJump.tres" id="20_xij6e"]
