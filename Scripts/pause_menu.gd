@@ -20,6 +20,8 @@ func resume():
 
 # pause game, show ui
 func pause():
+	GameState.map_open = false
+	await get_tree().process_frame
 	get_tree().paused = true
 	show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

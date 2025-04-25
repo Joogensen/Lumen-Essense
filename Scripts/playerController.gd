@@ -47,6 +47,7 @@ func _ready():
 	paranoia = 0
 	paranoia_sprite.visible = false
 	animated_sprite.stop()
+	GameState.is_player_dead = false
 	
 
 	for fuel in get_tree().get_nodes_in_group("lantern_fuel"):
