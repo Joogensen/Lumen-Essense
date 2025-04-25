@@ -174,7 +174,7 @@ visibility_layer = 0
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="LightSwitch" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("10_as27t")]
-position = Vector2(7707, 1473)
+position = Vector2(8283, 1476)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
 [node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
@@ -1267,4 +1267,8 @@ position = Vector2(6775, 1941)
 checkpoint_id = "ch_2"
 
 [node name="Area2D" parent="." instance=ExtResource("17_xu3p2")]
-position = Vector2(7610, 2115)
+position = Vector2(7582, 2113)
+
+[node name="Node2D3" parent="." instance=ExtResource("25_otw58")]
+position = Vector2(7649, 1423)
+checkpoint_id = "ch_3"
