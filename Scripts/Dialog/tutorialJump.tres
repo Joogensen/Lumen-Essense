@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_hpk37")
+dialog_id = "2"
 lines = [{
 "speaker": "Lantern",
 "text": "That's a far jump"

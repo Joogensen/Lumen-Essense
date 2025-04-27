@@ -14,4 +14,4 @@ func _on_body_entered(body):
 
 	has_triggered = true
 	var dialog_position = body.global_position + Vector2(0, -100)
-	DialogManager.start_dialog(dialog_position, dialog_data.lines)
+	DialogManager.start_dialog(dialog_position, dialog_data.lines, dialog_data.dialog_id)

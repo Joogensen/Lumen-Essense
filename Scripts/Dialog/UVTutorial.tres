@@ -4,22 +4,26 @@
 
 [resource]
 script = ExtResource("1_yi221")
+dialog_id = "3"
 lines = [{
-"speaker": "Player",
-"text": "This Jump is way too far!"
-}, {
 "speaker": "Lantern",
-"text": "you're in luck!"
-}, {
-"speaker": "Lantern",
-"text": "Press C to activate UV mode"
-}, {
-"speaker": "Lantern",
-"text": "It guides you and uncovers hidden paths. "
+"text": "There seems to be a message on the wall."
 }, {
 "speaker": "Player",
-"text": "But I'm scared of the dark!"
+"text": "What? I don't see anything."
 }, {
 "speaker": "Lantern",
-"text": "Better not leave it on for too long then!"
+"text": "That's because you just have human eyes."
+}, {
+"speaker": "Lantern",
+"text": "Press C to activate my other mode."
+}, {
+"speaker": "Lantern",
+"text": "It uncovers hidden messages and paths."
+}, {
+"speaker": "Lantern",
+"text": "But be careful,"
+}, {
+"speaker": "Lantern",
+"text": "Leave it on for too long and it will consume you."
 }]
