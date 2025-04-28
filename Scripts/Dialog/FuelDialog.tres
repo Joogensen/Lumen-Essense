@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_xsnio")
+dialog_id = "4"
 lines = [{
 "speaker": "Player",
 "text": "Nice! A fuel canister!"

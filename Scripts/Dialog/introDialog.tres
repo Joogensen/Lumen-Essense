@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_sxnna")
+dialog_id = "1"
 lines = [{
 "speaker": "Lantern",
 "text": "Careful..."

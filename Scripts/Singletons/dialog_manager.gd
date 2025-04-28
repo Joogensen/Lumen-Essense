@@ -12,10 +12,18 @@ var is_dialog_active = false
 var can_advance_line = false
 
 var original_camera_zoom = Vector2.ONE
+var original_camera_offset = Vector2.ZERO
 
-func start_dialog(position: Vector2, lines: Array):
+var current_dialog_id: String = ""
+
+
+func start_dialog(position: Vector2, lines: Array, dialog_id: String = ""):
 	if is_dialog_active:
 		return
+
+	if dialog_id != "" and GameState.seen_dialogues.has(dialog_id):
+		print("🛑 Skipping dialog:", dialog_id)
+		return  # Already seen, skip it
 
 	# Validate input format
 	for line in lines:
@@ -31,11 +39,15 @@ func start_dialog(position: Vector2, lines: Array):
 	var player = players.front()
 	player.set_dialog_mode(true)
 	GameState.is_in_dialog = true
+	current_dialog_id = dialog_id
+
 
 	original_camera_zoom = player.get_node("Camera2D").zoom
 	var camera = player.get_node("Camera2D")
 	var tween = create_tween()
 	tween.tween_property(camera, "zoom", camera.zoom * 1.2, 0.4).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(camera, "offset", Vector2(40, 0), 0.4).set_trans(Tween.TRANS_SINE)  # move right
+
 
 	dialog_lines = lines
 	text_box_position = position
@@ -130,6 +142,10 @@ func end_dialog():
 	if players.is_empty():
 		push_error("No player found in 'player' group")
 		return
+	
+	if current_dialog_id != "":
+		GameState.seen_dialogues[current_dialog_id] = true
+
 
 	var player = players.front()
 	player.set_dialog_mode(false)
@@ -139,3 +155,4 @@ func end_dialog():
 	if camera:
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", original_camera_zoom, 0.4).set_trans(Tween.TRANS_SINE)
+		tween.parallel().tween_property(camera, "offset", original_camera_offset, 0.4).set_trans(Tween.TRANS_SINE)
