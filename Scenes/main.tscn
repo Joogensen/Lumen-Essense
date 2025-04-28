@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
 [ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
-[ext_resource type="PackedScene" uid="uid://d1nr8qxd363wk" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
+[ext_resource type="Script" path="res://Scripts/background_music.gd" id="18_0tqo6"]
 [ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
 [ext_resource type="Resource" uid="uid://c7cqssbk02aul" path="res://Scripts/Dialog/introDialog.tres" id="19_2rjdk"]
 [ext_resource type="Resource" uid="uid://bdeiackm8sxqc" path="res://Scripts/Dialog/tutorialJump.tres" id="20_xij6e"]
@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bserlo3db0s18" path="res://Sprites/3.png" id="24_1e2jc"]
 [ext_resource type="PackedScene" uid="uid://biyemdjsj3fwu" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
 [ext_resource type="PackedScene" uid="uid://lhk7ciquo6tu" path="res://Scenes/uv_message.tscn" id="26_up8ju"]
-[ext_resource type="Texture2D" uid="uid://cmt5hhfk8jquh" path="res://Sprites/blood.png" id="27_t4qre"]
+[ext_resource type="Texture2D" uid="uid://cmt5hhfk8jquh" path="res://Sprites/ChatGPT Image Apr 27, 2025, 06_12_36 PM.png" id="27_t4qre"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -184,7 +184,7 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("27_t4qre")
 
 [node name="LightSwitch" parent="." node_paths=PackedStringArray("canvas_modulate_node") instance=ExtResource("10_as27t")]
-position = Vector2(8283, 1476)
+position = Vector2(7707, 1473)
 canvas_modulate_node = NodePath("../CanvasModulate")
 
 [node name="fuel" parent="." groups=["lantern_fuel"] instance=ExtResource("5_ieyf2")]
@@ -227,9 +227,6 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="SimpleMap" parent="Player" instance=ExtResource("18_8lwm8")]
-visible = false
-
 [node name="Arrow" type="Sprite2D" parent="Player"]
 visible = false
 light_mask = 8
@@ -250,18 +247,21 @@ shadow_filter = 1
 shadow_filter_smooth = 0.5
 texture = ExtResource("2_me62g")
 script = ExtResource("4_ii5tc")
-current_fuel = 75.0
+current_fuel = 50.0
 canvas_modulate_node = NodePath("../../CanvasModulate")
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("8_jmcfj")
+bus = &"SFX"
 
 [node name="switch_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("9_sig01")
 volume_db = -15.928
+bus = &"SFX"
 
 [node name="normal_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("7_wj515")
+bus = &"SFX"
 
 [node name="Spikes" type="Area2D" parent="." groups=["Death"]]
 position = Vector2(5304, 1653)
@@ -636,6 +636,8 @@ flip_v = true
 stream = ExtResource("15_oyisi")
 volume_db = -16.0
 autoplay = true
+bus = &"Music"
+script = ExtResource("18_0tqo6")
 
 [node name="UVPlatform2" parent="." instance=ExtResource("15_o10mp")]
 position = Vector2(3679, 1067)
@@ -1276,10 +1278,3 @@ checkpoint_id = "ch_1"
 [node name="Node2D2" parent="." instance=ExtResource("25_otw58")]
 position = Vector2(6775, 1941)
 checkpoint_id = "ch_2"
-
-[node name="Area2D" parent="." instance=ExtResource("17_xu3p2")]
-position = Vector2(7582, 2113)
-
-[node name="Node2D3" parent="." instance=ExtResource("25_otw58")]
-position = Vector2(7649, 1423)
-checkpoint_id = "ch_3"

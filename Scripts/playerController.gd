@@ -1,20 +1,20 @@
 extends CharacterBody2D
 
 @export var orbit_radius: float = 64.0
-@export var canvas_modulate_node: CanvasModulate  
+@export var canvas_modulate_node: CanvasModulate
 @export var light_switch: Area2D
 @export var walk_speed = 150.0
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
 @export var jump_force = -400
 @export_range(0,1) var decelerate_on_jump_release = 0.5
+@export var settings_scene: PackedScene
 
 var can_move = true
 var paranoia = 0.1
 var paranoia_roi = 1.0
 var is_dead = false
 var can_burn_fuel = true
-
 
 @onready var walk_animation_player: AnimationPlayer = $WalkAnimationPlayer
 @onready var light: PointLight2D = $PointLight2D
@@ -29,28 +29,28 @@ var can_burn_fuel = true
 @onready var whispers_audio: AudioStreamPlayer2D = $PlayerAudios/Whispers
 @onready var land_audio: AudioStreamPlayer2D = $PlayerAudios/Landing
 
-
-
 const PUSH_FORCE = 18.0
 const MIN_PUSH_FORCE = 10.0
-var was_paranoia_zero = true  
+var was_paranoia_zero = true
 var was_on_floor = false
 
-# Heartbeat scaling parameters
 var base_heartbeat_pitch = 1.0
 var max_heartbeat_pitch = 1.8
-var base_heartbeat_volume_db = -10.0
-var max_heartbeat_volume_db = 8.0
-var base_whisper_volume_db = -40.0  # fully silent
-var max_whisper_volume_db = -8.0    # loud at full paranoia
+var base_heartbeat_volume_db = -20.0
+var max_heartbeat_volume_db = -8.0
+var base_whisper_volume_db = -40.0
+var max_whisper_volume_db = -8.0
 
+const LAND_VOLUME_MULTIPLIER = 0.01
+const FOOTSTEP_VOLUME_MULTIPLIER = 0.05
+const DEATH_VOLUME_MULTIPLIER = 0.01
 
 func _ready():
 	paranoia = 0
 	paranoia_sprite.visible = false
 	animated_sprite.stop()
-	GameState.is_player_dead = false
-	
+	if settings_scene == null:
+		settings_scene = preload("res://Scenes/SettingsLayer.tscn")
 
 	for fuel in get_tree().get_nodes_in_group("lantern_fuel"):
 		if fuel.has_signal("collected"):
@@ -59,14 +59,12 @@ func _ready():
 	var uv = get_tree().root.get_node("Main/Player/PointLight2D")
 	if uv and uv.has_signal("uv_active"):
 		uv.uv_active.connect(_on_PointLight2D_uv_active)
-	
+
 	if GameState.last_checkpoint_position != Vector2.ZERO:
 		global_position = GameState.last_checkpoint_position
-
 		var cam := $Camera2D
 		cam.position_smoothing_enabled = false
-		cam.global_position = global_position  # Snap immediately
-
+		cam.global_position = global_position
 		await get_tree().create_timer(0.1).timeout
 		cam.position_smoothing_enabled = true
 
@@ -77,9 +75,7 @@ func _process(delta):
 	if light.visible:
 		paranoia_check(delta)
 		update_paranoia_animation(delta)
-		
-		print("Paranoia:", paranoia)
-	
+
 		if paranoia >= 5.0 and !is_dead:
 			die()
 	else:
@@ -88,14 +84,13 @@ func _process(delta):
 
 	update_heartbeat_audio()
 
-
 func _physics_process(delta: float) -> void:
 	if !can_move: return
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and (is_on_floor()):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
 	elif Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
@@ -131,16 +126,13 @@ func _physics_process(delta: float) -> void:
 			$Arrow.visible = false
 		else:
 			$Arrow.visible = true
-			
-	# Detect landing
+
 	if is_on_floor() and !was_on_floor:
 		land_audio.pitch_scale = randf_range(0.9, 1.1)
+		land_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * LAND_VOLUME_MULTIPLIER)
 		land_audio.play()
 
-	# Update for next frame
 	was_on_floor = is_on_floor()
-
-
 
 func paranoia_check(delta):
 	if is_dead or not light.visible or not can_burn_fuel:
@@ -151,30 +143,31 @@ func paranoia_check(delta):
 	else:
 		paranoia = min(5, paranoia + paranoia_roi * delta)
 
-
 func update_heartbeat_audio():
+	var master_volume = SettingsManager.settings.master_volume
+	var sfx_volume = SettingsManager.settings.sfx_volume
+	var volume_multiplier = master_volume * sfx_volume
+
 	if paranoia > 0:
 		if !heartbeat.playing:
 			heartbeat.play()
 		if !whispers_audio.playing:
 			whispers_audio.play()
 
-# Fade volume based on paranoia level (0 to 5)
-		var whisper_volume = lerp(base_whisper_volume_db, max_whisper_volume_db, paranoia / 5.0)
-		whispers_audio.volume_db = whisper_volume
+		var paranoia_factor = paranoia / 5.0
 
+		var heartbeat_linear = db_to_linear(lerp(base_heartbeat_volume_db, max_heartbeat_volume_db, paranoia_factor))
+		var whispers_linear = db_to_linear(lerp(base_whisper_volume_db, max_whisper_volume_db, paranoia_factor))
 
-		var pitch = lerp(base_heartbeat_pitch, max_heartbeat_pitch, paranoia / 5.0)
-		heartbeat.pitch_scale = pitch
+		heartbeat.volume_db = linear_to_db(heartbeat_linear * volume_multiplier)
+		whispers_audio.volume_db = linear_to_db(whispers_linear * volume_multiplier)
 
-		var volume_db = lerp(base_heartbeat_volume_db, max_heartbeat_volume_db, paranoia / 5.0)
-		heartbeat.volume_db = volume_db
+		heartbeat.pitch_scale = lerp(base_heartbeat_pitch, max_heartbeat_pitch, paranoia_factor)
 	else:
 		if heartbeat.playing:
 			heartbeat.stop()
 		if whispers_audio.playing:
 			whispers_audio.stop()
-
 
 func update_paranoia_animation(delta):
 	if paranoia == 0:
@@ -202,6 +195,7 @@ func update_paranoia_animation(delta):
 
 func _on_fuel_collected():
 	light.refuel(50)
+	pickup_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume)
 	pickup_audio.play()
 
 func die():
@@ -215,19 +209,18 @@ func die():
 	stop_all_sfx_except_death()
 
 	if not dead_audio.playing:
+		dead_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * DEATH_VOLUME_MULTIPLIER)
 		dead_audio.play()
 
 	hide()
 	disable_input()
 
-	await get_tree().process_frame  
+	await get_tree().process_frame
 	death_screen.start_animation()
 
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
 
-
-	
 func disable_input():
 	can_move = false
 
@@ -236,11 +229,12 @@ func enable_input():
 
 func _on_PointLight2D_uv_active(is_uv_active: bool) -> void:
 	$Arrow.visible = is_uv_active
-	
+
 func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(0.8, 1.2)
+	footstep.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * FOOTSTEP_VOLUME_MULTIPLIER)
 	footstep.play()
-	
+
 func stop_all_sfx_except_death():
 	if heartbeat.playing:
 		heartbeat.stop()
