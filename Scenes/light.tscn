@@ -88,14 +88,18 @@ libraries = {
 stream = ExtResource("3_c3l6f")
 volume_db = 24.0
 autoplay = true
+bus = &"SFX"
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_qasr1")
+bus = &"SFX"
 
 [node name="switch_light_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_5wdo3")
 volume_db = -15.928
+bus = &"SFX"
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_7lh0y")
 volume_db = 1.0
+bus = &"SFX"

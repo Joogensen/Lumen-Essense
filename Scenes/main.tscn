@@ -251,13 +251,16 @@ canvas_modulate_node = NodePath("../../CanvasModulate")
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("8_jmcfj")
+bus = &"SFX"
 
 [node name="switch_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("9_sig01")
 volume_db = -15.928
+bus = &"SFX"
 
 [node name="normal_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("7_wj515")
+bus = &"SFX"
 
 [node name="Spikes" type="Area2D" parent="." groups=["Death"]]
 position = Vector2(5304, 1653)
@@ -632,6 +635,7 @@ flip_v = true
 stream = ExtResource("15_oyisi")
 volume_db = -16.0
 autoplay = true
+bus = &"Music"
 
 [node name="UVPlatform2" parent="." instance=ExtResource("15_o10mp")]
 position = Vector2(3679, 1067)

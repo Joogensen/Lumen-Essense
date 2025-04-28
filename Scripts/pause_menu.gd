@@ -1,55 +1,50 @@
 extends Control
 
+@export var settings_scene: PackedScene
 var accepting_input = true
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if settings_scene == null:
+		settings_scene = preload("res://Scenes/SettingsLayer.tscn")
 	hide()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	testEsc()
+	if accepting_input:
+		# Use the action mapping for ESC key
+		if Input.is_action_just_pressed("ui_cancel"):
+			if get_tree().paused:
+				resume()
+			else:
+				pause()
 
-# resume game, hide ui
 func resume():
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	get_tree().paused = false
 
-# pause game, show ui
 func pause():
 	get_tree().paused = true
 	show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-# check if 'esc' key has been pressed
-func testEsc():
-	if accepting_input:
-		if Input.is_action_just_pressed("ui_cancel") and !get_tree().paused:
-			pause()
-		elif Input.is_action_just_pressed("ui_cancel") and get_tree().paused:
-			resume()
-	else:
-		pass
-
-
 func _on_resume_pressed() -> void:
 	resume()
 
-
 func _on_settings_pressed() -> void:
-	pass # Replace with function body.
+	var settings = settings_scene.instantiate()
+	add_child(settings)
+	settings.open(true, false)  # From pause, not from main
+	settings.settings_closed.connect(_on_settings_closed)
+	hide()
 
+func _on_settings_closed():
+	show()
 
 func _on_restart_pressed() -> void:
 	resume()
 	get_tree().reload_current_scene()
 
-
 func _on_exit_pressed() -> void:
 	resume()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
-	#get_tree().quit()
