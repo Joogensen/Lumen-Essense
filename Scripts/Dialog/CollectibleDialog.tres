@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_8wyxf")
-dialog_id = "5"
+dialog_id = ""
 lines = [{
 "speaker": "Player",
 "text": "What's That?"
