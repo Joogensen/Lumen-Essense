@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://d1k05ex2t51mc" path="res://Audio/whispersghostvoicemix-202342.mp3" id="12_7ua1i"]
 [ext_resource type="PackedScene" uid="uid://cjamfea32yo4" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
 [ext_resource type="AudioStream" uid="uid://bdmd7cx6xw7ja" path="res://Audio/landing_From_Fall.mp3" id="13_mjsgd"]
-[ext_resource type="PackedScene" path="res://Scenes/TextBox.tscn" id="15_rfo1m"]
+[ext_resource type="PackedScene" uid="uid://bt4fwjywbgbes" path="res://Scenes/TextBox.tscn" id="15_rfo1m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
 radius = 11.0
