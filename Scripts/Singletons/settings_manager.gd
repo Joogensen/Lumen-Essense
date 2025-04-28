@@ -2,9 +2,9 @@ extends Node
 
 # Default settings
 var settings = {
-	"master_volume": 0.4,
-	"music_volume": 0.4,
-	"sfx_volume": 0.4,
+	"master_volume": 0.2,
+	"music_volume": 0.1,
+	"sfx_volume": 0.2,
 	"fullscreen": false
 }
 
@@ -30,12 +30,12 @@ func load_settings():
 
 func apply_settings():
 	# Ensure volume values are within a reasonable range (0.0 to 1.0)
-	var master_vol = clamp(settings.get("master_volume", 0.4), 0.0, 1.0)
-	var music_vol = clamp(settings.get("music_volume", 0.4), 0.0, 1.0)
+	var master_vol = clamp(settings.get("master_volume", 0.2), 0.0, 1.0)
+	var music_vol = clamp(settings.get("music_volume", 0.1), 0.0, 1.0)
 	
 	# Scale the SFX volume so it never exceeds a max value
 	# Limiting SFX volume to a much quieter level
-	var sfx_vol = clamp(settings.get("sfx_volume", 0.4), 0.0, 1.0) * 0.1  # Now capping at max 0.1
+	var sfx_vol = clamp(settings.get("sfx_volume", 0.2), 0.0, 1.0)  # Now capping at max 0.1
 
 	# Audio settings (without using linear_to_db)
 	AudioServer.set_bus_volume_db(

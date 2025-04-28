@@ -36,14 +36,14 @@ var was_on_floor = false
 
 var base_heartbeat_pitch = 1.0
 var max_heartbeat_pitch = 1.8
-var base_heartbeat_volume_db = -10.0
-var max_heartbeat_volume_db = 8.0
+var base_heartbeat_volume_db = -20.0
+var max_heartbeat_volume_db = -8.0
 var base_whisper_volume_db = -40.0
 var max_whisper_volume_db = -8.0
 
-const LAND_VOLUME_MULTIPLIER = 0.05
+const LAND_VOLUME_MULTIPLIER = 0.01
 const FOOTSTEP_VOLUME_MULTIPLIER = 0.05
-const DEATH_VOLUME_MULTIPLIER = 0.08
+const DEATH_VOLUME_MULTIPLIER = 0.01
 
 func _ready():
 	paranoia = 0

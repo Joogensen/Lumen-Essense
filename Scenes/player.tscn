@@ -190,7 +190,7 @@ bus = &"SFX"
 
 [node name="Landing" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("13_mjsgd")
-volume_db = -20.0
+volume_db = -40.0
 bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

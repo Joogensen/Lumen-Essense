@@ -16,6 +16,7 @@ func _ready():
 	master_slider.value = SettingsManager.settings.master_volume
 	music_slider.value = SettingsManager.settings.music_volume
 	sfx_slider.value = SettingsManager.settings.sfx_volume
+	
 	# Connect slider signals
 	master_slider.value_changed.connect(_on_master_volume_changed)
 	music_slider.value_changed.connect(_on_music_volume_changed)
@@ -30,9 +31,11 @@ func _on_master_volume_changed(value: float):
 
 func _on_music_volume_changed(value: float):
 	SettingsManager.settings.music_volume = value
+	# Modified to make minimum volume quieter
+	var db_value = linear_to_db(value * 0.3)  # Adjust this multiplier as needed
 	AudioServer.set_bus_volume_db(
 		AudioServer.get_bus_index("Music"), 
-		linear_to_db(value)
+		db_value
 	)
 
 func _on_sfx_volume_changed(value: float):
@@ -49,24 +52,7 @@ func open(from_pause_menu := false, from_main_menu := false):
 	if from_pause_menu:
 		get_tree().paused = true
 
-
-func _on_apply_pressed():
-	# Save settings
-	SettingsManager.settings.master_volume = $PanelContainer/MarginContainer/VBoxContainer/MasterSlider.value
-	SettingsManager.settings.music_volume = $PanelContainer/MarginContainer/VBoxContainer/MusicSlider.value
-	SettingsManager.settings.sfx_volume = $PanelContainer/MarginContainer/VBoxContainer/SFXSlider.value
-	SettingsManager.settings.fullscreen = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FullscreenCheckbox.button_pressed
-	SettingsManager.save_settings()
-	
-	if opened_from_main:
-		emit_signal("return_to_main_menu")
-		queue_free()
-	else:
-		emit_signal("settings_closed")
-	hide()
-
-
-func _on_back_pressed() -> void:
+func _on_back_pressed():
 	hide()
 	if opened_from_pause:
 		get_tree().paused = false
@@ -76,3 +62,18 @@ func _on_back_pressed() -> void:
 		queue_free()
 	else:
 		emit_signal("settings_closed")
+
+func _on_apply_pressed():
+	# Save new settings
+	SettingsManager.settings.master_volume = master_slider.value
+	SettingsManager.settings.music_volume = music_slider.value
+	SettingsManager.settings.sfx_volume = sfx_slider.value
+	SettingsManager.settings.fullscreen = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FullscreenCheckbox.button_pressed
+	SettingsManager.save_settings()
+	
+	if opened_from_main:
+		emit_signal("return_to_main_menu")
+		queue_free()
+	else:
+		emit_signal("settings_closed")
+	hide()

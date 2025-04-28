@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 GameState="*res://Scripts/GameState.gd"
 DialogManager="*res://Scripts/Singletons/dialog_manager.gd"
 SettingsManager="*res://Scripts/Singletons/settings_manager.gd"
+BackgroundMusic="*res://Scripts/background_music.gd"
 
 [editor_plugins]
 
