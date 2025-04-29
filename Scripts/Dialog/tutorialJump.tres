@@ -10,7 +10,7 @@ lines = [{
 "text": "That's a far jump"
 }, {
 "speaker": "Lantern",
-"text": "Press spacebar to jump,"
+"text": "Press \"spacebar\" to jump,"
 }, {
 "speaker": "Lantern",
 "text": "Hold it down to jump farther!"
