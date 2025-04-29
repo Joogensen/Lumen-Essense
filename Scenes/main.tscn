@@ -6,30 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://2ba8x5borqhu" path="res://Sprites/ChatGPT Image Apr 28, 2025, 07_22_14 PM.png" id="4_54fkr"]
 [ext_resource type="Texture2D" uid="uid://b5lh1moqi58er" path="res://Sprites/right-arrow.png" id="4_a04uo"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
-[ext_resource type="PackedScene" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
+[ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
-[ext_resource type="PackedScene" path="res://Scenes/uv_message.tscn" id="5_vkk82"]
+[ext_resource type="PackedScene" uid="uid://lhk7ciquo6tu" path="res://Scenes/uv_message.tscn" id="5_vkk82"]
 [ext_resource type="Texture2D" uid="uid://cmt5hhfk8jquh" path="res://Sprites/blood.png" id="6_47e1a"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="7_wj515"]
 [ext_resource type="AudioStream" uid="uid://dcujgasubb0hk" path="res://Audio/uv_light_audio.wav" id="8_jmcfj"]
 [ext_resource type="AudioStream" uid="uid://3oc4rckx6t7c" path="res://Audio/switch_audio.mp3" id="9_sig01"]
-[ext_resource type="PackedScene" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
+[ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
 [ext_resource type="Texture2D" uid="uid://ck815alpf0cdq" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/level_tileset.png" id="11_xccnf"]
 [ext_resource type="PackedScene" uid="uid://dhtb0xcsask5e" path="res://Scenes/uv_platform.tscn" id="15_o10mp"]
 [ext_resource type="AudioStream" uid="uid://c1sa2ye4vpw06" path="res://Audio/eerie-ambient-10-205803.mp3" id="15_oyisi"]
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
-[ext_resource type="PackedScene" uid="uid://dj1gyax42dch3" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
-[ext_resource type="PackedScene" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
-[ext_resource type="PackedScene" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
+[ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
+[ext_resource type="PackedScene" uid="uid://d1nr8qxd363wk" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
+[ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
 [ext_resource type="Resource" uid="uid://c7cqssbk02aul" path="res://Scripts/Dialog/introDialog.tres" id="19_2rjdk"]
 [ext_resource type="Resource" uid="uid://bdeiackm8sxqc" path="res://Scripts/Dialog/tutorialJump.tres" id="20_xij6e"]
 [ext_resource type="Resource" uid="uid://5c57ate43uh0" path="res://Scripts/Dialog/UVTutorial.tres" id="21_pdm7w"]
 [ext_resource type="Resource" uid="uid://bmeceqsrjh60n" path="res://Scripts/Dialog/CollectibleDialog.tres" id="22_0hoib"]
 [ext_resource type="Resource" uid="uid://bvirfstbyboga" path="res://Scripts/Dialog/FuelDialog.tres" id="22_qrn8i"]
 [ext_resource type="Texture2D" uid="uid://bserlo3db0s18" path="res://Sprites/3.png" id="24_1e2jc"]
-[ext_resource type="PackedScene" uid="uid://bahmix01j7wo3" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
+[ext_resource type="PackedScene" uid="uid://biyemdjsj3fwu" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -235,7 +235,7 @@ position = Vector2(4315, 1075)
 position = Vector2(5172, 1991)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(83, 2087)
+position = Vector2(7649, 1453)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true

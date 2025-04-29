@@ -115,8 +115,8 @@ func _process(delta):
 func _physics_process(delta: float) -> void:
 	if !can_move: return
 	
-	if velocity.y > 0:
-		max_fall_speed_before_landing = max(max_fall_speed_before_landing, velocity.y)
+	#if velocity.y > 0:
+		#max_fall_speed_before_landing = max(max_fall_speed_before_landing, velocity.y)
 
 
 	if not is_on_floor():
@@ -160,14 +160,13 @@ func _physics_process(delta: float) -> void:
 			$Arrow.visible = true
 
 	if is_on_floor() and !was_on_floor:
-		if abs(max_fall_speed_before_landing) > FALL_DAMAGE_THRESHOLD and not is_dead:
-			die()
-		else:
-			land_audio.pitch_scale = randf_range(0.9, 1.1)
-			land_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * LAND_VOLUME_MULTIPLIER)
-			land_audio.play()
+		#if abs(max_fall_speed_before_landing) > FALL_DAMAGE_THRESHOLD and not is_dead:
+			#die()
+		land_audio.pitch_scale = randf_range(0.9, 1.1)
+		land_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * LAND_VOLUME_MULTIPLIER)
+		land_audio.play()
 
-		max_fall_speed_before_landing = 0.0
+		#max_fall_speed_before_landing = 0.0
 
 
 	was_on_floor = is_on_floor()
