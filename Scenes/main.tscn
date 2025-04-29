@@ -6,30 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://2ba8x5borqhu" path="res://Sprites/ChatGPT Image Apr 28, 2025, 07_22_14 PM.png" id="4_54fkr"]
 [ext_resource type="Texture2D" uid="uid://b5lh1moqi58er" path="res://Sprites/right-arrow.png" id="4_a04uo"]
 [ext_resource type="Script" path="res://Scripts/point_light_2d_2.gd" id="4_ii5tc"]
-[ext_resource type="PackedScene" uid="uid://qw0pg7dirpay" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
+[ext_resource type="PackedScene" path="res://Scenes/fuel.tscn" id="5_ieyf2"]
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
-[ext_resource type="PackedScene" uid="uid://lhk7ciquo6tu" path="res://Scenes/uv_message.tscn" id="5_vkk82"]
+[ext_resource type="PackedScene" path="res://Scenes/uv_message.tscn" id="5_vkk82"]
 [ext_resource type="Texture2D" uid="uid://cmt5hhfk8jquh" path="res://Sprites/blood.png" id="6_47e1a"]
 [ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="7_wj515"]
 [ext_resource type="AudioStream" uid="uid://dcujgasubb0hk" path="res://Audio/uv_light_audio.wav" id="8_jmcfj"]
 [ext_resource type="AudioStream" uid="uid://3oc4rckx6t7c" path="res://Audio/switch_audio.mp3" id="9_sig01"]
-[ext_resource type="PackedScene" uid="uid://c13ceq0624wy8" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
+[ext_resource type="PackedScene" path="res://Scenes/LightSwitch.tscn" id="10_as27t"]
 [ext_resource type="Texture2D" uid="uid://ck815alpf0cdq" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/level_tileset.png" id="11_xccnf"]
 [ext_resource type="PackedScene" uid="uid://dhtb0xcsask5e" path="res://Scenes/uv_platform.tscn" id="15_o10mp"]
 [ext_resource type="AudioStream" uid="uid://c1sa2ye4vpw06" path="res://Audio/eerie-ambient-10-205803.mp3" id="15_oyisi"]
 [ext_resource type="Texture2D" uid="uid://dsbesp6l44eu0" path="res://Sprites/uvPlatform.png" id="16_nyvm5"]
 [ext_resource type="Texture2D" uid="uid://c8v600tkce3e8" path="res://Foozle_2DT0001_Science_Fiction_Labs_Tileset/Tileset/Individual_PNGs/Level_Tileset/tile054.png" id="17_tftxh"]
-[ext_resource type="PackedScene" uid="uid://d2vbbg8x38l6m" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
-[ext_resource type="PackedScene" uid="uid://d1nr8qxd363wk" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
-[ext_resource type="PackedScene" uid="uid://fh755e2swi0p" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
+[ext_resource type="PackedScene" uid="uid://dj1gyax42dch3" path="res://Scenes/Collectible.tscn" id="17_xu3p2"]
+[ext_resource type="PackedScene" path="res://Scenes/simple_map.tscn" id="18_8lwm8"]
+[ext_resource type="PackedScene" path="res://Scenes/DialogTrigger.tscn" id="18_d2yf0"]
 [ext_resource type="Resource" uid="uid://c7cqssbk02aul" path="res://Scripts/Dialog/introDialog.tres" id="19_2rjdk"]
 [ext_resource type="Resource" uid="uid://bdeiackm8sxqc" path="res://Scripts/Dialog/tutorialJump.tres" id="20_xij6e"]
 [ext_resource type="Resource" uid="uid://5c57ate43uh0" path="res://Scripts/Dialog/UVTutorial.tres" id="21_pdm7w"]
 [ext_resource type="Resource" uid="uid://bmeceqsrjh60n" path="res://Scripts/Dialog/CollectibleDialog.tres" id="22_0hoib"]
 [ext_resource type="Resource" uid="uid://bvirfstbyboga" path="res://Scripts/Dialog/FuelDialog.tres" id="22_qrn8i"]
 [ext_resource type="Texture2D" uid="uid://bserlo3db0s18" path="res://Sprites/3.png" id="24_1e2jc"]
-[ext_resource type="PackedScene" uid="uid://biyemdjsj3fwu" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
+[ext_resource type="PackedScene" uid="uid://bahmix01j7wo3" path="res://Scenes/Checkpoint.tscn" id="25_otw58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjx0l"]
 texture = ExtResource("11_xccnf")
@@ -156,10 +156,10 @@ a = Vector2(128, -8)
 b = Vector2(-122, -6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nneb2"]
-size = Vector2(30.25, 14.25)
+size = Vector2(34.2451, 14.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51v6i"]
-size = Vector2(32, 15)
+size = Vector2(36, 15)
 
 [node name="Main" type="Node2D"]
 light_mask = 8
@@ -235,7 +235,7 @@ position = Vector2(4315, 1075)
 position = Vector2(5172, 1991)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(8028, 1611)
+position = Vector2(83, 2087)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
@@ -279,16 +279,13 @@ canvas_modulate_node = NodePath("../../CanvasModulate")
 
 [node name="uv_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("8_jmcfj")
-bus = &"SFX"
 
 [node name="switch_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("9_sig01")
 volume_db = -15.928
-bus = &"SFX"
 
 [node name="normal_light_audio" type="AudioStreamPlayer2D" parent="Player/PointLight2D"]
 stream = ExtResource("7_wj515")
-bus = &"SFX"
 
 [node name="Spikes" type="Area2D" parent="." groups=["Death"]]
 position = Vector2(5304, 1653)
@@ -707,7 +704,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform15" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(6031, 1104)
+position = Vector2(5957, 1109)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform15"]
@@ -718,20 +715,8 @@ shape = SubResource("RectangleShape2D_nneb2")
 position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
-[node name="UVPlatform19" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(6064, 862)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform19"]
-position = Vector2(2010.88, 988.875)
-shape = SubResource("RectangleShape2D_nneb2")
-
-[node name="Sprite2D" type="Sprite2D" parent="UVPlatform19"]
-position = Vector2(2011, 997)
-texture = ExtResource("16_nyvm5")
-
 [node name="UVPlatform20" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(6015, 719)
+position = Vector2(5994, 728)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform20"]
@@ -743,7 +728,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform17" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7609, 639)
+position = Vector2(7509, 574)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform17"]
@@ -755,7 +740,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform42" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7610, 591)
+position = Vector2(7509, 540)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform42"]
@@ -767,7 +752,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform43" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7610, 491)
+position = Vector2(7551, 632)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform43"]
@@ -779,7 +764,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform44" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7520, 447)
+position = Vector2(7521, 394)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform44"]
@@ -791,7 +776,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform45" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7455, 367)
+position = Vector2(7435, 343)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform45"]
@@ -803,7 +788,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform46" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7488, 271)
+position = Vector2(7483, 251)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform46"]
@@ -815,7 +800,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform47" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7450, 255)
+position = Vector2(7445, 218)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform47"]
@@ -827,7 +812,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform48" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7450, 213)
+position = Vector2(7446, 178)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform48"]
@@ -839,7 +824,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform49" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7520, 175)
+position = Vector2(7446, 134)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform49"]
@@ -851,7 +836,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform50" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7455, 111)
+position = Vector2(7520, 173)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform50"]
@@ -899,7 +884,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform33" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7385, 542)
+position = Vector2(7357, 541)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform33"]
@@ -923,7 +908,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform21" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(5999, 571)
+position = Vector2(6052, 664)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform21"]
@@ -935,7 +920,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform22" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7424, 639)
+position = Vector2(7402, 636)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform22"]
@@ -947,7 +932,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform23" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7385, 623)
+position = Vector2(7362, 624)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform23"]
@@ -959,7 +944,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform28" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7648, 655)
+position = Vector2(7510, 606)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform28"]
@@ -971,7 +956,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform41" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7648, 751)
+position = Vector2(7585, 632)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform41"]
@@ -979,6 +964,18 @@ position = Vector2(2010.88, 988.875)
 shape = SubResource("RectangleShape2D_nneb2")
 
 [node name="Sprite2D" type="Sprite2D" parent="UVPlatform41"]
+position = Vector2(2011, 997)
+texture = ExtResource("16_nyvm5")
+
+[node name="UVPlatform54" parent="." instance=ExtResource("15_o10mp")]
+position = Vector2(7637, 570)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform54"]
+position = Vector2(2010.88, 988.875)
+shape = SubResource("RectangleShape2D_nneb2")
+
+[node name="Sprite2D" type="Sprite2D" parent="UVPlatform54"]
 position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
@@ -1019,7 +1016,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform24" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(6080, 639)
+position = Vector2(6078, 591)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform24"]
@@ -1030,20 +1027,8 @@ shape = SubResource("RectangleShape2D_nneb2")
 position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
-[node name="UVPlatform18" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(5968, 926)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform18"]
-position = Vector2(2010.88, 988.875)
-shape = SubResource("RectangleShape2D_nneb2")
-
-[node name="Sprite2D" type="Sprite2D" parent="UVPlatform18"]
-position = Vector2(2011, 997)
-texture = ExtResource("16_nyvm5")
-
 [node name="UVPlatform16" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(5952, 1039)
+position = Vector2(5907, 1049)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform16"]
@@ -1079,7 +1064,7 @@ position = Vector2(2011, 997)
 texture = ExtResource("16_nyvm5")
 
 [node name="UVPlatform27" parent="." instance=ExtResource("15_o10mp")]
-position = Vector2(7385, 583)
+position = Vector2(7359, 583)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform27"]
@@ -1474,7 +1459,7 @@ shape = SubResource("RectangleShape2D_51v6i")
 texture = ExtResource("17_tftxh")
 
 [node name="StaticBody2D42" type="StaticBody2D" parent="."]
-position = Vector2(9467, 1636)
+position = Vector2(9446, 1632)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D42"]
@@ -1485,7 +1470,7 @@ shape = SubResource("RectangleShape2D_51v6i")
 texture = ExtResource("17_tftxh")
 
 [node name="StaticBody2D48" type="StaticBody2D" parent="."]
-position = Vector2(9372, 1300)
+position = Vector2(9402, 1275)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D48"]
@@ -1496,7 +1481,7 @@ shape = SubResource("RectangleShape2D_51v6i")
 texture = ExtResource("17_tftxh")
 
 [node name="StaticBody2D49" type="StaticBody2D" parent="."]
-position = Vector2(9531, 1268)
+position = Vector2(9528, 1248)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D49"]
@@ -1507,7 +1492,7 @@ shape = SubResource("RectangleShape2D_51v6i")
 texture = ExtResource("17_tftxh")
 
 [node name="StaticBody2D44" type="StaticBody2D" parent="."]
-position = Vector2(9659, 1844)
+position = Vector2(9477, 1461)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D44"]
@@ -1528,8 +1513,74 @@ shape = SubResource("RectangleShape2D_51v6i")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D37"]
 texture = ExtResource("17_tftxh")
 
+[node name="StaticBody2D39" type="StaticBody2D" parent="."]
+position = Vector2(7866, 1972)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D39"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D39"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D40" type="StaticBody2D" parent="."]
+position = Vector2(7866, 1972)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D40"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D40"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D54" type="StaticBody2D" parent="."]
+position = Vector2(7854, 1661)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D54"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D54"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D55" type="StaticBody2D" parent="."]
+position = Vector2(7896, 1734)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D55"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D55"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D56" type="StaticBody2D" parent="."]
+position = Vector2(7850, 1819)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D56"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D56"]
+texture = ExtResource("17_tftxh")
+
+[node name="StaticBody2D57" type="StaticBody2D" parent="."]
+position = Vector2(7903, 1890)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D57"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D57"]
+texture = ExtResource("17_tftxh")
+
 [node name="StaticBody2D38" type="StaticBody2D" parent="."]
-position = Vector2(8106, 1780)
+position = Vector2(7894, 1583)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D38"]
@@ -1742,7 +1793,7 @@ position = Vector2(627, 1151)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UVPlatform10"]
-position = Vector2(2010.88, 988.875)
+position = Vector2(2012.88, 988.875)
 shape = SubResource("RectangleShape2D_nneb2")
 
 [node name="Sprite2D" type="Sprite2D" parent="UVPlatform10"]
@@ -1766,7 +1817,7 @@ position = Vector2(1372, 2152)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D28"]
-position = Vector2(0, -8.5)
+position = Vector2(2, -8.5)
 shape = SubResource("RectangleShape2D_51v6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D28"]
