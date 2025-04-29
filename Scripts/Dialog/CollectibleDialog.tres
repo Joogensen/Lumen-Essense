@@ -7,11 +7,11 @@ script = ExtResource("1_8wyxf")
 dialog_id = ""
 lines = [{
 "speaker": "Player",
-"text": "What's That?"
+"text": "What's that?"
 }, {
 "speaker": "Lantern",
 "text": "That's a spirit orb,"
 }, {
 "speaker": "Lantern",
-"text": "You should try collect them for me!"
+"text": "You should try and collect them for me!"
 }]
