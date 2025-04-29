@@ -15,7 +15,7 @@ func _ready():
 
 func _on_start_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 func _on_settings_pressed() -> void:
 	if current_settings_instance:
