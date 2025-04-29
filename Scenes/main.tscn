@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=4 uid="uid://duu74ywubn1dj"]
+[gd_scene load_steps=37 format=4 uid="uid://duu74ywubn1dj"]
 
 [ext_resource type="PackedScene" uid="uid://bpnhj4ma24ipv" path="res://Scenes/player.tscn" id="1_ahjb2"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_wmhjx"]
 [ext_resource type="Texture2D" uid="uid://bjnhb0jdk7ns0" path="res://Sprites/2d_lights_and_shadows_neutral_point_light.webp" id="2_me62g"]
 [ext_resource type="Texture2D" uid="uid://2ba8x5borqhu" path="res://Sprites/ChatGPT Image Apr 28, 2025, 07_22_14 PM.png" id="4_54fkr"]
 [ext_resource type="Texture2D" uid="uid://b5lh1moqi58er" path="res://Sprites/right-arrow.png" id="4_a04uo"]
@@ -164,6 +165,7 @@ size = Vector2(32, 15)
 light_mask = 8
 visibility_layer = 8
 position = Vector2(-1, 0)
+script = ExtResource("1_wmhjx")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(107, 1012)
@@ -233,7 +235,7 @@ position = Vector2(4315, 1075)
 position = Vector2(5172, 1991)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(8028, 1611)
+position = Vector2(8222, 1461)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true

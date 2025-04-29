@@ -41,9 +41,13 @@ var max_heartbeat_volume_db = -8.0
 var base_whisper_volume_db = -40.0
 var max_whisper_volume_db = -8.0
 
-const LAND_VOLUME_MULTIPLIER = 0.01
-const FOOTSTEP_VOLUME_MULTIPLIER = 0.05
-const DEATH_VOLUME_MULTIPLIER = 0.01
+const LAND_VOLUME_MULTIPLIER = 0.5
+const FOOTSTEP_VOLUME_MULTIPLIER = 5.0
+const DEATH_VOLUME_MULTIPLIER = 2.0
+
+var max_fall_speed_before_landing = 0.0
+const FALL_DAMAGE_THRESHOLD = 750.0
+
 
 func _ready():
 	paranoia = 0
@@ -86,6 +90,10 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	if !can_move: return
+	
+	if velocity.y > 0:
+		max_fall_speed_before_landing = max(max_fall_speed_before_landing, velocity.y)
+
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -128,9 +136,15 @@ func _physics_process(delta: float) -> void:
 			$Arrow.visible = true
 
 	if is_on_floor() and !was_on_floor:
-		land_audio.pitch_scale = randf_range(0.9, 1.1)
-		land_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * LAND_VOLUME_MULTIPLIER)
-		land_audio.play()
+		if abs(max_fall_speed_before_landing) > FALL_DAMAGE_THRESHOLD and not is_dead:
+			die()
+		else:
+			land_audio.pitch_scale = randf_range(0.9, 1.1)
+			land_audio.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * LAND_VOLUME_MULTIPLIER)
+			land_audio.play()
+
+		max_fall_speed_before_landing = 0.0
+
 
 	was_on_floor = is_on_floor()
 
@@ -232,8 +246,10 @@ func _on_PointLight2D_uv_active(is_uv_active: bool) -> void:
 
 func _play_footstep_audio():
 	footstep.pitch_scale = randf_range(0.8, 1.2)
-	footstep.volume_db = linear_to_db(SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * FOOTSTEP_VOLUME_MULTIPLIER)
+	var base_volume = SettingsManager.settings.master_volume * SettingsManager.settings.sfx_volume * FOOTSTEP_VOLUME_MULTIPLIER
+	footstep.volume_db = linear_to_db(base_volume) + randf_range(-1.5, 1.5)
 	footstep.play()
+
 
 func stop_all_sfx_except_death():
 	if heartbeat.playing:

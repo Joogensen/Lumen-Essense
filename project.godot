@@ -20,6 +20,7 @@ GameState="*res://Scripts/GameState.gd"
 DialogManager="*res://Scripts/Singletons/dialog_manager.gd"
 SettingsManager="*res://Scripts/Singletons/settings_manager.gd"
 BackgroundMusic="*res://Scripts/background_music.gd"
+Main="*res://Scripts/main.gd"
 
 [editor_plugins]
 

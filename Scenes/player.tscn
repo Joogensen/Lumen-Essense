@@ -161,11 +161,30 @@ libraries = {
 "": SubResource("AnimationLibrary_tvtqf")
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_rbtxq")]
+visible = false
+
+[node name="PlayerTextBoxWrapper" type="Node2D" parent="."]
+position = Vector2(9, -31)
+metadata/_edit_group_ = true
+
+[node name="PlayerTextBox" parent="PlayerTextBoxWrapper" instance=ExtResource("15_rfo1m")]
+visible = false
+
+[node name="LanternTextBoxWrapper" type="Node2D" parent="."]
+position = Vector2(23, -12)
+metadata/_edit_group_ = true
+
+[node name="LanternTextBox" parent="LanternTextBoxWrapper" instance=ExtResource("15_rfo1m")]
+visible = false
+
 [node name="PlayerAudios" type="Node2D" parent="."]
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("4_g365e")
-volume_db = 12.0
+volume_db = 24.0
 attenuation = 1.7411
 bus = &"SFX"
 
@@ -193,22 +212,3 @@ bus = &"SFX"
 stream = ExtResource("13_mjsgd")
 volume_db = -40.0
 bus = &"SFX"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_rbtxq")]
-visible = false
-
-[node name="PlayerTextBoxWrapper" type="Node2D" parent="."]
-position = Vector2(9, -31)
-metadata/_edit_group_ = true
-
-[node name="PlayerTextBox" parent="PlayerTextBoxWrapper" instance=ExtResource("15_rfo1m")]
-visible = false
-
-[node name="LanternTextBoxWrapper" type="Node2D" parent="."]
-position = Vector2(23, -12)
-metadata/_edit_group_ = true
-
-[node name="LanternTextBox" parent="LanternTextBoxWrapper" instance=ExtResource("15_rfo1m")]
-visible = false
