@@ -36,10 +36,10 @@ var was_on_floor = false
 
 var base_heartbeat_pitch = 1.0
 var max_heartbeat_pitch = 1.8
-var base_heartbeat_volume_db = -20.0
-var max_heartbeat_volume_db = -8.0
-var base_whisper_volume_db = -40.0
-var max_whisper_volume_db = -8.0
+var base_heartbeat_volume_db = -10.0
+var max_heartbeat_volume_db = 15.0
+var base_whisper_volume_db = -20.0
+var max_whisper_volume_db = 0.0
 
 const LAND_VOLUME_MULTIPLIER = 0.5
 const FOOTSTEP_VOLUME_MULTIPLIER = 5.0
@@ -48,11 +48,21 @@ const DEATH_VOLUME_MULTIPLIER = 2.0
 var max_fall_speed_before_landing = 0.0
 const FALL_DAMAGE_THRESHOLD = 750.0
 
+var tries_left = 30
 
 func _ready():
+	if canvas_modulate_node == null:
+		var canvas = get_tree().root.get_node_or_null("Main/CanvasModulate")
+		if canvas:
+			canvas_modulate_node = canvas
+			print("✅ Found CanvasModulate at runtime!")
+		else:
+			print("❌ CanvasModulate still missing!")
+
 	paranoia = 0
 	paranoia_sprite.visible = false
 	animated_sprite.stop()
+	
 	if settings_scene == null:
 		settings_scene = preload("res://Scenes/SettingsLayer.tscn")
 
@@ -60,9 +70,8 @@ func _ready():
 		if fuel.has_signal("collected"):
 			fuel.collected.connect(_on_fuel_collected)
 
-	var uv = get_tree().root.get_node("Main/Player/PointLight2D")
-	if uv and uv.has_signal("uv_active"):
-		uv.uv_active.connect(_on_PointLight2D_uv_active)
+	call_deferred("_connect_to_uv")
+
 
 	if GameState.last_checkpoint_position != Vector2.ZERO:
 		global_position = GameState.last_checkpoint_position
@@ -71,6 +80,21 @@ func _ready():
 		cam.global_position = global_position
 		await get_tree().create_timer(0.1).timeout
 		cam.position_smoothing_enabled = true
+
+func _connect_to_uv():
+	if tries_left <= 0:
+		print("❌ Player could not find UV light after multiple tries.")
+		return
+	
+	var uv = get_tree().root.get_node_or_null("Main/Player/PointLight2D")
+	if uv and uv.has_signal("uv_active"):
+		if not uv.uv_active.is_connected(_on_PointLight2D_uv_active):
+			uv.uv_active.connect(_on_PointLight2D_uv_active)
+		print("✅ Player connected to UV light!")
+	else:
+		tries_left -= 1
+		call_deferred("_connect_to_uv") # Retry again next frame
+
 
 func _process(delta):
 	if is_dead: return
@@ -160,21 +184,21 @@ func paranoia_check(delta):
 func update_heartbeat_audio():
 	var master_volume = SettingsManager.settings.master_volume
 	var sfx_volume = SettingsManager.settings.sfx_volume
-	var volume_multiplier = master_volume * sfx_volume
+	var paranoia_factor = paranoia / 5.0
 
 	if paranoia > 0:
-		if !heartbeat.playing:
+		if not heartbeat.playing:
 			heartbeat.play()
-		if !whispers_audio.playing:
+		if not whispers_audio.playing:
 			whispers_audio.play()
 
-		var paranoia_factor = paranoia / 5.0
+		# Lerp dB first
+		var heartbeat_db = lerp(base_heartbeat_volume_db, max_heartbeat_volume_db, paranoia_factor)
+		var whispers_db = lerp(base_whisper_volume_db, max_whisper_volume_db, paranoia_factor)
 
-		var heartbeat_linear = db_to_linear(lerp(base_heartbeat_volume_db, max_heartbeat_volume_db, paranoia_factor))
-		var whispers_linear = db_to_linear(lerp(base_whisper_volume_db, max_whisper_volume_db, paranoia_factor))
-
-		heartbeat.volume_db = linear_to_db(heartbeat_linear * volume_multiplier)
-		whispers_audio.volume_db = linear_to_db(whispers_linear * volume_multiplier)
+		# Apply master and sfx scaling by ADDING dB (NOT using linear again)
+		heartbeat.volume_db = heartbeat_db + linear_to_db(master_volume) + linear_to_db(sfx_volume)
+		whispers_audio.volume_db = whispers_db + linear_to_db(master_volume) + linear_to_db(sfx_volume)
 
 		heartbeat.pitch_scale = lerp(base_heartbeat_pitch, max_heartbeat_pitch, paranoia_factor)
 	else:
@@ -182,6 +206,7 @@ func update_heartbeat_audio():
 			heartbeat.stop()
 		if whispers_audio.playing:
 			whispers_audio.stop()
+
 
 func update_paranoia_animation(delta):
 	if paranoia == 0:

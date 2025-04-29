@@ -183,6 +183,7 @@ position = Vector2(1867, 2096)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="UvMessage"]
+visible = false
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("6_47e1a")
 
@@ -191,6 +192,7 @@ position = Vector2(8924, 1035)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="UvMessage2"]
+visible = false
 position = Vector2(-19.4999, -17)
 scale = Vector2(0.106445, 0.101562)
 texture = ExtResource("4_54fkr")
@@ -200,6 +202,7 @@ position = Vector2(10462, 2116)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="UvMessage3"]
+visible = false
 position = Vector2(-19.4999, -17)
 scale = Vector2(0.106445, 0.101562)
 texture = ExtResource("4_54fkr")
@@ -235,7 +238,7 @@ position = Vector2(4315, 1075)
 position = Vector2(5172, 1991)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(7641, 1490)
+position = Vector2(78, 2075)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
@@ -1717,7 +1720,7 @@ position = Vector2(542, 2071)
 dialog_data = ExtResource("20_xij6e")
 
 [node name="DialogTrigger3" parent="." instance=ExtResource("18_d2yf0")]
-position = Vector2(1676, 1997)
+position = Vector2(1763, 2064)
 dialog_data = ExtResource("21_pdm7w")
 
 [node name="DialogTrigger4" parent="." instance=ExtResource("18_d2yf0")]
@@ -1846,3 +1849,14 @@ position = Vector2(9819, 1574)
 [node name="Node2D3" parent="." instance=ExtResource("25_otw58")]
 position = Vector2(7649, 1423)
 checkpoint_id = "ch_3"
+
+[node name="StaticBody2D39" type="StaticBody2D" parent="."]
+position = Vector2(7899, 1550)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D39"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_51v6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D39"]
+texture = ExtResource("17_tftxh")
