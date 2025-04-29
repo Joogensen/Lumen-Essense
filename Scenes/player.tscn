@@ -165,12 +165,13 @@ libraries = {
 
 [node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("4_g365e")
+volume_db = 12.0
 attenuation = 1.7411
 bus = &"SFX"
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("6_jugdt")
-volume_db = 1.0
+volume_db = -45.0
 bus = &"SFX"
 
 [node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
