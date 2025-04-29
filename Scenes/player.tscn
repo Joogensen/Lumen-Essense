@@ -190,7 +190,6 @@ bus = &"SFX"
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
 stream = ExtResource("6_jugdt")
-volume_db = -45.0
 bus = &"SFX"
 
 [node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]

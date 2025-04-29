@@ -1,17 +1,19 @@
 extends Control
 
 @export var settings_scene: PackedScene
-var current_settings_instance = null  # Track the active settings instance
+var current_settings_instance = null
 
-func _ready() -> void:
+func _ready():
 	if settings_scene == null:
 		settings_scene = preload("res://Scenes/SettingsLayer.tscn")
+	
+	# Apply saved audio settings when starting (moved from Main.gd)
+	if SettingsManager.settings != null:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(max(SettingsManager.settings.master_volume, 0.001)))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(max(SettingsManager.settings.music_volume, 0.001)))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(max(SettingsManager.settings.sfx_volume, 0.001)))
 
-	# Immediately apply saved audio settings when starting
-	if Main.has_method("apply_saved_audio_settings"):
-		Main.apply_saved_audio_settings()
-
-func _on_start_pressed() -> void:
+func _on_start_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
