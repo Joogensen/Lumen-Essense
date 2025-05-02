@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/area_2d.gd" id="5_v8i7n"]
 [ext_resource type="PackedScene" uid="uid://lhk7ciquo6tu" path="res://Scenes/uv_message.tscn" id="5_vkk82"]
 [ext_resource type="Texture2D" uid="uid://cmt5hhfk8jquh" path="res://Sprites/blood.png" id="6_47e1a"]
-[ext_resource type="Texture2D" uid="uid://hf8ksyfjwmb8" path="res://Sprites/10.png" id="6_j5p50"]
+[ext_resource type="Texture2D" uid="uid://cyuxdisf247j" path="res://Sprites/10.png" id="6_j5p50"]
 [ext_resource type="Texture2D" uid="uid://dplmpqbbtwde7" path="res://Sprites/ChatGPT Image Apr 28, 2025, 11_09_45 PM.png" id="6_v1170"]
 [ext_resource type="Texture2D" uid="uid://dy7gigsr8fhy5" path="res://Sprites/ChatGPT Image Apr 29, 2025, 08_38_33 AM.png" id="7_j3ddr"]
 [ext_resource type="AudioStream" uid="uid://c6k3a0tvcpji5" path="res://Audio/normal_light_audio.wav" id="7_wj515"]
@@ -259,7 +259,7 @@ position = Vector2(10106, 2093)
 position = Vector2(5172, 1991)
 
 [node name="Player" parent="." node_paths=PackedStringArray("canvas_modulate_node", "light_switch") instance=ExtResource("1_ahjb2")]
-position = Vector2(7598, 1493)
+position = Vector2(80, 2088)
 canvas_modulate_node = NodePath("../CanvasModulate")
 light_switch = NodePath("../LightSwitch")
 metadata/_edit_group_ = true
