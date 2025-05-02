@@ -1,0 +1,216 @@
+[gd_scene load_steps=7 format=3 uid="uid://btubgff84ncha"]
+
+[ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_7tog6"]
+[ext_resource type="Shader" path="res://Scripts/pause_menu.gdshader" id="1_ttlkw"]
+[ext_resource type="FontFile" uid="uid://bsiocxlxhflph" path="res://Sprites/Bernhard Modern Bold BT.ttf" id="2_7liot"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgm8a"]
+shader = ExtResource("1_ttlkw")
+shader_parameter/lod = 0.815
+
+[sub_resource type="Animation" id="Animation_swj5p"]
+resource_name = "death"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Death2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Death2:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Death2:theme_override_colors/font_shadow_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Death2:theme_override_colors/font_outline_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel/Death2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.666667, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-6.5, -55.5), Vector2(-166.5, -55.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel/Death:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-326.5, -55.5), Vector2(-166.5, -55.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panel/Death:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Panel/Death:theme_override_colors/font_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Panel/Death:theme_override_colors/font_shadow_color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Panel/Death:theme_override_colors/font_outline_color")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0.564706, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icexv"]
+_data = {
+"death": SubResource("Animation_swj5p")
+}
+
+[node name="DeathScreen" type="CanvasLayer"]
+script = ExtResource("1_7tog6")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.439216)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.533333)
+material = SubResource("ShaderMaterial_pgm8a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_icexv")
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Death" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.5
+offset_top = -55.5
+offset_right = 166.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.564706, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.564706, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7liot")
+theme_override_font_sizes/font_size = 90
+text = "DEATH"
+
+[node name="Death2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.5
+offset_top = -55.5
+offset_right = 166.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.564706, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.564706, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.564706, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7liot")
+theme_override_font_sizes/font_size = 90
+text = "DEATH"

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://5c57ate43uh0"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_yi221"]
+
+[resource]
+script = ExtResource("1_yi221")
+dialog_id = "3"
+lines = [{
+"speaker": "Lantern",
+"text": "There seems to be a message on the wall."
+}, {
+"speaker": "Player",
+"text": "What? I don't see anything."
+}, {
+"speaker": "Lantern",
+"text": "That's because you just have human eyes."
+}, {
+"speaker": "Lantern",
+"text": "Press \"C\" to activate my other mode."
+}, {
+"speaker": "Lantern",
+"text": "It uncovers hidden messages and paths."
+}, {
+"speaker": "Lantern",
+"text": "But be careful,"
+}, {
+"speaker": "Lantern",
+"text": "Leave it on for too long and it will consume you."
+}]

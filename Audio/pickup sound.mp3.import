@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxtg70pie8skw"
+path="res://.godot/imported/pickup sound.mp3-671cb3dbeb5eada7a2647b6f5e85bdf3.mp3str"
+
+[deps]
+
+source_file="res://Audio/pickup sound.mp3"
+dest_files=["res://.godot/imported/pickup sound.mp3-671cb3dbeb5eada7a2647b6f5e85bdf3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

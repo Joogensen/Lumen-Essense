@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://c7cqssbk02aul"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_sxnna"]
+
+[resource]
+script = ExtResource("1_sxnna")
+dialog_id = "1"
+lines = [{
+"speaker": "Lantern",
+"text": "Careful..."
+}, {
+"speaker": "Player",
+"text": "Woah... Where did that come from?"
+}, {
+"speaker": "Lantern",
+"text": "Down here!"
+}, {
+"speaker": "Lantern",
+"text": "Something's off about this place, "
+}, {
+"speaker": "Lantern",
+"text": "I'm going to help you get out!"
+}, {
+"speaker": "Player",
+"text": "I'm scared!"
+}]

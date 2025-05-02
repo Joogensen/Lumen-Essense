@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogData" load_steps=2 format=3 uid="uid://bdeiackm8sxqc"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/dialog_data.gd" id="1_hpk37"]
+
+[resource]
+script = ExtResource("1_hpk37")
+dialog_id = "2"
+lines = [{
+"speaker": "Lantern",
+"text": "That's a far jump"
+}, {
+"speaker": "Lantern",
+"text": "Press \"spacebar\" to jump,"
+}, {
+"speaker": "Lantern",
+"text": "Hold it down to jump farther!"
+}]

@@ -1,21 +1,213 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcvwccb8d3v58"]
+[gd_scene load_steps=22 format=3 uid="uid://bpnhj4ma24ipv"]
 
 [ext_resource type="Script" path="res://Scripts/playerController.gd" id="1_mtxti"]
-[ext_resource type="Texture2D" uid="uid://cy0p6e46eo7lu" path="res://Sprites/Screenshot_2025-02-12_135822.png" id="2_dqeed"]
+[ext_resource type="PackedScene" uid="uid://btubgff84ncha" path="res://Scenes/death_screen.tscn" id="2_3b2kq"]
+[ext_resource type="Texture2D" uid="uid://b7lgbyfi530fg" path="res://Sprites/AnimationSpritesheet1-Sheet.png" id="2_w1rjf"]
+[ext_resource type="Texture2D" uid="uid://bbf4yvoh7pdct" path="res://Sprites/Free Smoke Fx  Pixel 07.png" id="3_5vkk6"]
+[ext_resource type="AudioStream" uid="uid://b0djodwr74nb8" path="res://Audio/footstep_fast_single.wav" id="4_g365e"]
+[ext_resource type="AudioStream" uid="uid://3o3h1kmejy17" path="res://Audio/heartbeat-deep.mp3" id="6_jugdt"]
+[ext_resource type="AudioStream" uid="uid://dmbagi3y4o3tm" path="res://Audio/dead noise.wav" id="8_30320"]
+[ext_resource type="AudioStream" uid="uid://db6q1bsjxu5bk" path="res://Audio/pickup_Low.wav" id="10_eg8rq"]
+[ext_resource type="AudioStream" uid="uid://d1k05ex2t51mc" path="res://Audio/whispersghostvoicemix-202342.mp3" id="12_7ua1i"]
+[ext_resource type="PackedScene" uid="uid://cjamfea32yo4" path="res://Scenes/pause_menu.tscn" id="12_rbtxq"]
+[ext_resource type="AudioStream" uid="uid://bdmd7cx6xw7ja" path="res://Audio/landing_From_Fall.mp3" id="13_mjsgd"]
+[ext_resource type="PackedScene" uid="uid://bt4fwjywbgbes" path="res://Scenes/TextBox.tscn" id="15_rfo1m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yynyd"]
-size = Vector2(31, 47)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgcfp"]
+radius = 11.0
+height = 48.0
 
-[node name="Player" type="CharacterBody2D"]
-visibility_layer = 4
+[sub_resource type="CanvasTexture" id="CanvasTexture_hgnec"]
+diffuse_texture = ExtResource("2_w1rjf")
+texture_filter = 1
+
+[sub_resource type="Animation" id="Animation_to1ug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePlayer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gs8ou"]
+resource_name = "walk"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0075, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}, {
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePlayer:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_pyx8o"]
+resource_name = "walk_left_right"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h3448"]
+_data = {
+"RESET": SubResource("Animation_to1ug"),
+"walk": SubResource("Animation_gs8ou"),
+"walk_left_right": SubResource("Animation_pyx8o")
+}
+
+[sub_resource type="Animation" id="Animation_ans8g"]
+resource_name = "Paranoia"
+length = 1.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteParanoia:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_hce04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteParanoia:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvtqf"]
+_data = {
+"Paranoia": SubResource("Animation_ans8g"),
+"RESET": SubResource("Animation_hce04")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mtxti")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_yynyd")
+[node name="DeathScreen" parent="." instance=ExtResource("2_3b2kq")]
+visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visibility_layer = 4
-position = Vector2(-1, 0.668947)
-scale = Vector2(0.125, 0.163799)
-texture = ExtResource("2_dqeed")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_vgcfp")
+
+[node name="SpritePlayer" type="Sprite2D" parent="."]
+position = Vector2(-0.5, 0.499998)
+scale = Vector2(1.53125, 1.59375)
+texture = SubResource("CanvasTexture_hgnec")
+hframes = 17
+
+[node name="WalkAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h3448")
+}
+
+[node name="SpriteParanoia" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("3_5vkk6")
+hframes = 16
+
+[node name="ParanoiaAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvtqf")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_rbtxq")]
+visible = false
+
+[node name="PlayerTextBoxWrapper" type="Node2D" parent="."]
+position = Vector2(9, -31)
+metadata/_edit_group_ = true
+
+[node name="PlayerTextBox" parent="PlayerTextBoxWrapper" instance=ExtResource("15_rfo1m")]
+visible = false
+
+[node name="LanternTextBoxWrapper" type="Node2D" parent="."]
+position = Vector2(23, -12)
+metadata/_edit_group_ = true
+
+[node name="LanternTextBox" parent="LanternTextBoxWrapper" instance=ExtResource("15_rfo1m")]
+visible = false
+
+[node name="PlayerAudios" type="Node2D" parent="."]
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("4_g365e")
+volume_db = 24.0
+attenuation = 1.7411
+bus = &"SFX"
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("6_jugdt")
+bus = &"SFX"
+
+[node name="DeadAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("8_30320")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="PickupAudio" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("10_eg8rq")
+volume_db = 1.874
+bus = &"SFX"
+
+[node name="Whispers" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("12_7ua1i")
+volume_db = -40.0
+bus = &"SFX"
+
+[node name="Landing" type="AudioStreamPlayer2D" parent="PlayerAudios"]
+stream = ExtResource("13_mjsgd")
+volume_db = -40.0
+bus = &"SFX"
